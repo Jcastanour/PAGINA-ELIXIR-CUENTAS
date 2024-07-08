@@ -15,7 +15,7 @@ function actualizarBotones() {
       let contenidoG = 0;
       let menuatras = 0;
 
-      if (window.innerWidth > 600) {
+      if (window.innerWidth > 1100) {
         document.querySelectorAll(".botones button").forEach((button) => {
           button.style.display = "none";
         });
