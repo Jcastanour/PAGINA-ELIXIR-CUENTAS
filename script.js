@@ -63,6 +63,7 @@ function actualizarBotones() {
         document.getElementById("recordardatos").style.display = "inline";
         document.getElementById("cambiocorreou").style.display = "inline";
         document.getElementById("cambiocontrau").style.display = "inline";
+        document.getElementById("generarconseis").style.display = "inline";
       } else if (
         contenidoG > 6 &&
         (contenidoG + (filasG - 1)) % 6 === 0 &&
@@ -274,6 +275,49 @@ function generarPlantilla2() {
     .catch((err) => console.error("Error al leer el portapapeles:", err));
 }
 
+function generarPlantilla3() {
+  navigator.clipboard
+    .readText()
+    .then((text) => {
+      const contenido = text.trim().split("\t");
+      if (contenido.length !== 6) {
+        alert(
+          "El contenido copiado no está en el formato esperado (deben ser seis columnas separadas por tabuladores)."
+        );
+        return;
+      }
+
+      const [perfil, whatasapp, fecha, cuenta, correo, contrasena] = contenido;
+      contenidoGenerado = contenido;
+      nump = 1;
+      let plantilla = `*${cuenta}*\n*Correo:* ${correo}\n*Contrasena:* ${contrasena}\n\n*Perfil:* ${perfil}\n*Fecha:* ${fecha}`;
+      if (cuenta === "NETFLIX EXTRA") {
+        plantilla = `*NETFLIX TV PERSONAL*\n*Correo:* \n\n*Fecha:* ${fecha}`;
+      }
+
+      if (cuenta === "COMBO PLUS") {
+        plantilla = `*COMBO PLUS (DISNEY + STAR)*\n*Correo:* ${correo}\n*Contrasena:* ${contrasena}\n\n*Perfil:* ${perfil}\n*Fecha:* ${fecha}`;
+      }
+
+      PerfilG = perfil;
+      plantillaG = plantilla;
+      fechaG = fecha;
+      cuentaG = cuenta;
+      correoG = correo;
+      contraG = contrasena;
+      whatasappG = whatasapp;
+      plantillabool = 1;
+      navigator.clipboard
+        .writeText(plantilla)
+        .then(() => {
+          // alert("La plantilla ha sido generada y copiada al portapapeles.");
+          document.getElementById("perfil").value = "";
+        })
+        .catch((err) => console.error("Error al copiar al portapapeles:", err));
+    })
+    .catch((err) => console.error("Error al leer el portapapeles:", err));
+}
+
 function procesarFecha() {
   // Obtener el nombre del perfil y la fecha
   var perfil = PerfilG;
@@ -347,104 +391,36 @@ function copiarcuenta() {
     });
 }
 
-function generarCombo() {
-  combo = 1;
-  // Obtener el texto del portapapeles
-  navigator.clipboard
-    .readText()
-    .then((text) => {
-      // Dividir la cadena en elementos separados por tabuladores
-      const filas = text.trim().split("\n");
-
-      // Verificar el formato esperado
-      const contenido = text.trim().split("\t");
-      if (
-        contenido.length !== 5 &&
-        (contenido.length + (filas.length - 1)) % 5 !== 0
-      ) {
-        alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
-        );
-        return;
-      }
-
-      // Procesar cada fila
-      let fechaActual = obtenerFechaFormateada();
-      const salidacombo =
-        filas
-          .map((fila) => {
-            // Dividir la fila en elementos separados por tabuladores
-            const datos = fila.split("\t");
-
-            // Obtener los valores relevantes
-            let perfil = datos[2];
-            let whatasapp = datos[1];
-            const nombre = datos[0];
-            const correo = datos[3];
-            const contraseña = datos[4];
-
-            // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
-            if (perfil === "NETFLIX EXTRA") {
-              perfil = "NETFLIX TELEVISOR";
-            }
-
-            if (perfil === "COMBO PLUS") {
-              perfil = "COMBO PLUS (DISNEY + STAR)";
-            }
-
-            // Formatear la salida de esta fila
-            return (
-              `*${perfil.toUpperCase()} ${nombre.toUpperCase()}*\n` +
-              `*Correo:* ${correo}\n` +
-              `*Contraseña:* ${contraseña}`
-            );
-          })
-          .join("\n\n") + `\n\n*Fecha de venta:* ${fechaActual}`; // Unir las salidas de cada fila separadas por dos saltos de línea
-
-      // Colocar la salida formateada en el portapapeles
-      return navigator.clipboard.writeText(salidacombo);
-    })
-    .then(() => {
-      console.log(
-        "La salida formateada se ha copiado correctamente al portapapeles."
-      );
-    })
-    .catch((err) => {
-      console.error("Error:", err);
-    });
-}
-
-let combo = 0;
 function copiarexcel() {
-  if (!contenidoGenerado && combo === 0) {
+  if (!contenidoGenerado) {
     alert("Primero debes generar la plantilla.");
     return;
-  } else if (combo === 0) {
   }
 
-  let precioG;
+  // No aplica precios
+  // let precioG;
 
-  if (cuentaG === "NETFLIX TELEVISOR") {
-    precioG = 15000;
-  } else if (cuentaG === "NETFLIX EXTRA") {
-    precioG = 15000;
-  } else if (cuentaG === "NETFLIX CELULAR/PC") {
-    precioG = 12000;
-  } else if (cuentaG === "PLEX") {
-    precioG = 8000;
-  } else if (cuentaG === "PLEX 2") {
-    precioG = 14000;
-  } else if (cuentaG === "PLEX 4") {
-    precioG = 20000;
-  } else if (cuentaG === "IPTV") {
-    precioG = 12000;
-  } else if (cuentaG === "COMBO PLUS") {
-    precioG = 11000;
-  } else {
-    precioG = 6000;
-  }
+  // if (cuentaG === "NETFLIX TELEVISOR") {
+  //   precioG = 15000;
+  // } else if (cuentaG === "NETFLIX EXTRA") {
+  //   precioG = 15000;
+  // } else if (cuentaG === "NETFLIX CELULAR/PC") {
+  //   precioG = 12000;
+  // } else if (cuentaG === "PLEX") {
+  //   precioG = 8000;
+  // } else if (cuentaG === "PLEX 2") {
+  //   precioG = 14000;
+  // } else if (cuentaG === "PLEX 4") {
+  //   precioG = 20000;
+  // } else if (cuentaG === "IPTV") {
+  //   precioG = 12000;
+  // } else if (cuentaG === "COMBO PLUS") {
+  //   precioG = 11000;
+  // } else {
+  //   precioG = 6000;
+  // }
 
-  const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}\t"=+BUSCARV([@CORREO],'HOJA OCULTA CON TODOS LOS CORRE'!C:D,2,FALSO)"\t${precioG}`;
+  const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}`;
   navigator.clipboard
     .writeText(texto)
     .then(() => {
@@ -483,6 +459,9 @@ function abrirCuentaDesdeBoton() {
       break;
     case "star":
       url = "https://starplus.com";
+      break;
+    case "disney premium":
+      url = "https://disneyplus.com";
       break;
     case "paramount":
       url = "https://paramountplus.com";
