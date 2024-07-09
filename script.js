@@ -28,10 +28,10 @@ function actualizarBotones() {
         document.querySelector(".contenedor-botones").style.display = "block";
       }
 
-      document.querySelectorAll(".botones button").forEach((button) => {
-        button.style.display = "none";
-      });
-      document.querySelector(".contenedor-botones").style.display = "none";
+      // document.querySelectorAll(".botones button").forEach((button) => {
+      //   button.style.display = "none";
+      // });
+      // document.querySelector(".contenedor-botones").style.display = "none";
 
       console.log(plantillabool);
       if (text.includes("\t")) {
