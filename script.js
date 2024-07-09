@@ -5,6 +5,7 @@ window.onload = function () {
   setInterval(actualizarBotones, 0);
 };
 let plantillabool = 0;
+let copiado = 0;
 function actualizarBotones() {
   // let contenidoG = contenido;
   // let filasG = filas;
@@ -15,7 +16,7 @@ function actualizarBotones() {
       let contenidoG = 0;
       let menuatras = 0;
 
-      if (window.innerWidth > 1100) {
+      if (window.innerWidth > 600) {
         document.querySelectorAll(".botones button").forEach((button) => {
           button.style.display = "none";
         });
@@ -27,10 +28,10 @@ function actualizarBotones() {
         document.querySelector(".contenedor-botones").style.display = "block";
       }
 
-      // document.querySelectorAll(".botones button").forEach((button) => {
-      //   button.style.display = "none";
-      // });
-      // document.querySelector(".contenedor-botones").style.display = "none";
+      document.querySelectorAll(".botones button").forEach((button) => {
+        button.style.display = "none";
+      });
+      document.querySelector(".contenedor-botones").style.display = "none";
 
       console.log(plantillabool);
       if (text.includes("\t")) {
@@ -51,8 +52,13 @@ function actualizarBotones() {
         (contenidoG + (filasG - 1)) / 4 === filasG
       ) {
         document.getElementById("nombresyprecios").style.display = "inline";
-      } else if (contenidoG === 5) {
+      } else if (contenidoG === 5 && copiado === 0) {
         document.getElementById("generarconcinco").style.display = "inline";
+      } else if (contenidoG === 5 && copiado === 1) {
+        document.getElementById("plantilladenuevo").style.display = "inline";
+        document.getElementById("abrirpagina").style.display = "inline";
+        document.getElementById("copiarcuenta").style.display = "inline";
+        document.getElementById("contacto").style.display = "inline";
       } else if (
         contenidoG > 5 &&
         (contenidoG + (filasG - 1)) % 5 === 0 &&
@@ -397,29 +403,7 @@ function copiarexcel() {
     return;
   }
 
-  // No aplica precios
-  // let precioG;
-
-  // if (cuentaG === "NETFLIX TELEVISOR") {
-  //   precioG = 15000;
-  // } else if (cuentaG === "NETFLIX EXTRA") {
-  //   precioG = 15000;
-  // } else if (cuentaG === "NETFLIX CELULAR/PC") {
-  //   precioG = 12000;
-  // } else if (cuentaG === "PLEX") {
-  //   precioG = 8000;
-  // } else if (cuentaG === "PLEX 2") {
-  //   precioG = 14000;
-  // } else if (cuentaG === "PLEX 4") {
-  //   precioG = 20000;
-  // } else if (cuentaG === "IPTV") {
-  //   precioG = 12000;
-  // } else if (cuentaG === "COMBO PLUS") {
-  //   precioG = 11000;
-  // } else {
-  //   precioG = 6000;
-  // }
-
+  copiado = 1;
   const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}`;
   navigator.clipboard
     .writeText(texto)
