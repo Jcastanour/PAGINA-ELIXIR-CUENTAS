@@ -6,6 +6,7 @@ window.onload = function () {
 };
 let plantillabool = 0;
 let copiado = 0;
+
 function actualizarBotones() {
   // let contenidoG = contenido;
   // let filasG = filas;
@@ -46,7 +47,7 @@ function actualizarBotones() {
         document.getElementById("plantilladenuevo").style.display = "inline";
         document.getElementById("abrirpagina").style.display = "inline";
       } else if (contenidoG === 3) {
-        document.querySelector(".contenedor-botones").style.display = "inline";
+        document.querySelector("contenedor-botones").style.display = "inline";
       } else if (
         (contenidoG + (filasG - 1)) % 4 === 0 &&
         (contenidoG + (filasG - 1)) / 4 === filasG
