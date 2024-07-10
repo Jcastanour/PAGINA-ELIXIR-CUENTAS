@@ -26,6 +26,24 @@ function actualizarBotones() {
       let filasG = 0;
       let contenidoG = 0;
       let menuatras = 0;
+  // if (window.innerWidth > 600) {
+  //   document.querySelectorAll(".botones button").forEach((button) => {
+  //     button.style.display = "none";
+  //   });
+  //   document.querySelector(".contenedor-botones").style.display = "none";
+  // } else {
+  //   document.querySelectorAll(".botones button").forEach((button) => {
+  //     button.style.display = "inline-block";
+  //   });
+  //   document.querySelector(".contenedor-botones").style.display = "block";
+  // }
+
+  navigator.clipboard
+    .readText()
+    .then((text) => {
+      let filasG = 0;
+      let contenidoG = 0;
+      let menuatras = 0;
 
       document.querySelectorAll(".botones button").forEach((button) => {
         button.style.display = "none";
@@ -44,6 +62,7 @@ function actualizarBotones() {
         document.getElementById("plantilladenuevo").style.display = "inline";
         document.getElementById("abrirpagina").style.display = "inline";
       } else if (contenidoG === 3) {
+        document.querySelector(".contenedor-botones").style.display = "inline";
         document.querySelector(".contenedor-botones").style.display = "inline";
       } else if (
         (contenidoG + (filasG - 1)) % 4 === 0 &&
@@ -593,6 +612,236 @@ function obtenerNombresYSumaPrecios() {
     })
     .catch((err) => {
       console.error("Error:", err);
+    });
+}
+
+function renovaciones() {
+  // Obtener el texto del portapapeles
+  navigator.clipboard
+    .readText()
+    .then((text) => {
+      // Obtener la fecha actual en formato dd/mm/yyyy
+      const fechaActual = obtenerFechaFormateada();
+      // Dividir la cadena en elementos separados por saltos de línea
+      const filas = text.trim().split("\n");
+
+      // Verificar el formato esperado
+      const contenido = text.trim().split("\t");
+      if (
+        contenido.length !== 6 &&
+        (contenido.length + (filas.length - 1)) % 6 !== 0
+      ) {
+        alert(
+          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
+        );
+        return;
+      }
+
+      // Inicializar un objeto para agrupar por número de WhatsApp
+      const agrupadosPorWhatsApp = {};
+
+      // Iterar sobre cada fila
+      filas.forEach((fila) => {
+        // Dividir la fila en elementos separados por tabuladores
+        const datos = fila.split("\t");
+
+        // Extraer datos relevantes
+        const nombrePerfil = datos[0];
+        const whatsapp = datos[1];
+        let cuenta = datos[2];
+        const precio = parseFloat(datos[3].replace(/[^\d.]/g, ""));
+        const diasRestantes = parseInt(datos[5]);
+
+        // Procesar solo si los días restantes son 0
+        if (diasRestantes === 0) {
+          // Si el nombre de la cuenta es "NETFLIX EXTRA", reemplazarlo por "NETFLIX TELEVISOR"
+          if (cuenta === "NETFLIX EXTRA") {
+            cuenta = "NETFLIX TELEVISOR";
+          }
+
+          // Si el número de WhatsApp no está en el objeto, inicializar una entrada
+          if (!agrupadosPorWhatsApp[whatsapp]) {
+            agrupadosPorWhatsApp[whatsapp] = {
+              perfiles: [],
+              sumaPrecios: 0,
+              cuentasRepetidas: {},
+            };
+          }
+
+          // Agregar el perfil y cuenta al registro y contar repeticiones
+          agrupadosPorWhatsApp[whatsapp].perfiles.push({
+            cuenta,
+            nombrePerfil,
+          });
+          agrupadosPorWhatsApp[whatsapp].cuentasRepetidas[cuenta] =
+            (agrupadosPorWhatsApp[whatsapp].cuentasRepetidas[cuenta] || 0) + 1;
+
+          // Sumar el precio al total
+          agrupadosPorWhatsApp[whatsapp].sumaPrecios += precio;
+        }
+      });
+
+      // Crear los enlaces de WhatsApp para cada número
+      const enlacesConPerfil = Object.keys(agrupadosPorWhatsApp).map(
+        (whatsapp, index) => {
+          const cuentaInfo = agrupadosPorWhatsApp[whatsapp];
+          const cuentas = cuentaInfo.perfiles
+            .map((perfil) => `*${perfil.cuenta}* - ${perfil.nombrePerfil}`)
+            .join("\n");
+
+          const sumaFormateada = cuentaInfo.sumaPrecios.toLocaleString(
+            "es-CO",
+            {
+              style: "currency",
+              currency: "COP",
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }
+          );
+
+          const mensaje = `Hola 👋🏻, las siguientes cuentas vencieron el dia de hoy:\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\nEl no contestar este mensaje se asumirá como que se debe hacer cierre.`;
+
+          // Crear el enlace de WhatsApp sin el símbolo "+"
+          const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
+            /\D/g,
+            ""
+          )}?text=${encodeURIComponent(mensaje)}`;
+
+          return `*${
+            index + 1
+          } - ${cuentaInfo.perfiles[0].nombrePerfil.toUpperCase()} | ${whatsapp}*\n${enlaceWhatsApp}`;
+        }
+      );
+
+      // Crear el mensaje de renovación
+      const mensajeRenovacion =
+        `*Renovación - ${fechaActual}*\n\n` + enlacesConPerfil.join("\n\n");
+
+      // Copiar el mensaje al portapapeles
+      return navigator.clipboard.writeText(mensajeRenovacion);
+    })
+    .then(() => {
+      console.log(
+        "Los enlaces de WhatsApp con el mensaje de renovación se han copiado correctamente al portapapeles."
+      );
+    })
+    .catch((err) => {
+      console.error("Error al leer del portapapeles: ", err);
+    });
+}
+
+function renovaciones2() {
+  // Obtener el texto del portapapeles
+  navigator.clipboard
+    .readText()
+    .then((text) => {
+      // Obtener la fecha actual en formato dd/mm/yyyy
+      const fechaActual = obtenerFechaFormateada();
+      // Dividir la cadena en elementos separados por saltos de línea
+      const filas = text.trim().split("\n");
+
+      // Verificar el formato esperado
+      const contenido = text.trim().split("\t");
+      if (
+        contenido.length !== 9 &&
+        (contenido.length + (filas.length - 1)) % 9 !== 0
+      ) {
+        alert(
+          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
+        );
+        return;
+      }
+
+      // Inicializar un objeto para agrupar por número de WhatsApp
+      const agrupadosPorWhatsApp = {};
+
+      // Iterar sobre cada fila
+      filas.forEach((fila) => {
+        // Dividir la fila en elementos separados por tabuladores
+        const datos = fila.split("\t");
+
+        // Extraer datos relevantes
+        const nombrePerfil = datos[0];
+        const whatsapp = datos[1];
+        let cuenta = datos[3];
+        const precio = parseFloat(datos[6].replace(/[^\d.]/g, ""));
+        const diasRestantes = parseInt(datos[8]);
+
+        // Procesar solo si los días restantes son 0
+        if (diasRestantes === 0) {
+          // Si el nombre de la cuenta es "NETFLIX EXTRA", reemplazarlo por "NETFLIX TELEVISOR"
+          if (cuenta === "NETFLIX EXTRA") {
+            cuenta = "NETFLIX TELEVISOR";
+          }
+
+          // Si el número de WhatsApp no está en el objeto, inicializar una entrada
+          if (!agrupadosPorWhatsApp[whatsapp]) {
+            agrupadosPorWhatsApp[whatsapp] = {
+              perfiles: [],
+              sumaPrecios: 0,
+              cuentasRepetidas: {},
+            };
+          }
+
+          // Agregar el perfil y cuenta al registro y contar repeticiones
+          agrupadosPorWhatsApp[whatsapp].perfiles.push({
+            cuenta,
+            nombrePerfil,
+          });
+          agrupadosPorWhatsApp[whatsapp].cuentasRepetidas[cuenta] =
+            (agrupadosPorWhatsApp[whatsapp].cuentasRepetidas[cuenta] || 0) + 1;
+
+          // Sumar el precio al total
+          agrupadosPorWhatsApp[whatsapp].sumaPrecios += precio;
+        }
+      });
+
+      // Crear los enlaces de WhatsApp para cada número
+      const enlacesConPerfil = Object.keys(agrupadosPorWhatsApp).map(
+        (whatsapp, index) => {
+          const cuentaInfo = agrupadosPorWhatsApp[whatsapp];
+          const cuentas = cuentaInfo.perfiles
+            .map((perfil) => `*${perfil.cuenta}* - ${perfil.nombrePerfil}`)
+            .join("\n");
+
+          const sumaFormateada = cuentaInfo.sumaPrecios.toLocaleString(
+            "es-CO",
+            {
+              style: "currency",
+              currency: "COP",
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }
+          );
+
+          const mensaje = `Hola 👋🏻, las siguientes cuentas vencieron el dia de hoy:\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\nEl no contestar este mensaje se asumirá como que se debe hacer cierre.`;
+
+          // Crear el enlace de WhatsApp sin el símbolo "+"
+          const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
+            /\D/g,
+            ""
+          )}?text=${encodeURIComponent(mensaje)}`;
+
+          return `*${
+            index + 1
+          } - ${cuentaInfo.perfiles[0].nombrePerfil.toUpperCase()} | ${whatsapp}*\n${enlaceWhatsApp}`;
+        }
+      );
+
+      // Crear el mensaje de renovación
+      const mensajeRenovacion =
+        `*Renovación - ${fechaActual}*\n\n` + enlacesConPerfil.join("\n\n");
+
+      // Copiar el mensaje al portapapeles
+      return navigator.clipboard.writeText(mensajeRenovacion);
+    })
+    .then(() => {
+      console.log(
+        "Los enlaces de WhatsApp con el mensaje de renovación se han copiado correctamente al portapapeles."
+      );
+    })
+    .catch((err) => {
+      console.error("Error al leer del portapapeles: ", err);
     });
 }
 
