@@ -14,10 +14,17 @@ function actualizarContenidoCopiado() {
       let contenidoG = 0;
       let contenidoVisualizado = "";
 
-      document.querySelectorAll(".botones button").forEach((button) => {
-        button.style.display = "none";
-      });
-      document.querySelector(".contenedor-botones").style.display = "none";
+      if (window.innerWidth > 700) {
+        document.querySelectorAll(".botones button").forEach((button) => {
+          button.style.display = "none";
+        });
+        document.querySelector(".contenedor-botones").style.display = "none";
+      } else {
+        document.querySelectorAll(".botones button").forEach((button) => {
+          button.style.display = "inline-block";
+        });
+        document.querySelector(".contenedor-botones").style.display = "block";
+      }
 
       if (text.includes("\t")) {
         // Si el texto contiene tabuladores, mostrar como lista
