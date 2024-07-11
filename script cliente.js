@@ -70,10 +70,10 @@ function actualizarContenidoCopiado() {
           (contenidoG + (filasG - 1)) % 5 === 0 &&
           (contenidoG + (filasG - 1)) / 5 === filasG
         ) {
-          if (contenidoG === 5 && filasG === 1) {
+          if (contenidoG === 5 && copiado === 0 && filasG === 1) {
             contenidoVisualizado = `<p>${contenidoG} celdas copiadas.</p>`;
             document.getElementById("generarconcinco").style.display = "inline";
-          } else if (contenidoG === 5 && filasG === 1) {
+          } else if (contenidoG === 5 && copiado === 1 && filasG === 1) {
             contenidoVisualizado = `<p>${contenidoG} celdas copiadas.</p>`;
             document.getElementById("plantilladenuevo").style.display =
               "inline";
@@ -368,37 +368,14 @@ function copiarcuenta() {
     });
 }
 
-let combo = 0;
 function copiarexcel() {
-  if (!contenidoGenerado && combo === 0) {
+  if (!contenidoGenerado) {
     alert("Primero debes generar la plantilla.");
     return;
-  } else if (combo === 0) {
   }
 
-  let precioG;
   copiado = 1;
-  if (cuentaG === "NETFLIX TELEVISOR") {
-    precioG = 15000;
-  } else if (cuentaG === "NETFLIX EXTRA") {
-    precioG = 15000;
-  } else if (cuentaG === "NETFLIX CELULAR/PC") {
-    precioG = 12000;
-  } else if (cuentaG === "PLEX") {
-    precioG = 8000;
-  } else if (cuentaG === "PLEX 2") {
-    precioG = 14000;
-  } else if (cuentaG === "PLEX 4") {
-    precioG = 20000;
-  } else if (cuentaG === "IPTV") {
-    precioG = 12000;
-  } else if (cuentaG === "COMBO PLUS") {
-    precioG = 11000;
-  } else {
-    precioG = 6000;
-  }
-
-  const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}\t"=+BUSCARV([@CORREO],'HOJA OCULTA CON TODOS LOS CORRE'!C:D,2,FALSO)"\t${precioG}`;
+  const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}`;
   navigator.clipboard
     .writeText(texto)
     .then(() => {
