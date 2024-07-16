@@ -7,8 +7,7 @@ if(!empty($_POST['btningresar'])){
     if (!empty($_POST["usuario"]) and !empty($_POST["contrasena"])){
         $usuario = $_POST["usuario"];
         $contrasena = $_POST["contrasena"];
-        echo $usuario;
-        echo $contrasena;
+
         $sql= $conexion->query("SELECT * FROM usuarios where usuario = '$usuario' and contrasena = '$contrasena'");
         $datos = $sql->fetch_array();
         
