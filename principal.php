@@ -2,7 +2,7 @@
 session_start();
 
 if(empty($_SESSION['id'])){
-  header('location: index.html');
+  header('location: index.php');
 }
 
 ?>
@@ -21,7 +21,7 @@ if(empty($_SESSION['id'])){
     />
     <link rel="stylesheet" type="text/css" href="src/css/styles.css" />
   </head>
-  
+  Funciona
   <body>
     <div class="wrapper">
     <header>

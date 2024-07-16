@@ -2,7 +2,7 @@
 session_start();
 
 if(empty($_SESSION['id'])){
-  header('location: index.html');
+  header('location: index.php');
 }
 
 ?>
