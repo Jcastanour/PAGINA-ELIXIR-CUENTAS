@@ -26,7 +26,7 @@ if(empty($_SESSION['id'])){
     <div class="wrapper">
     <header>
         <img src="src/images/Logo.png" />
-        <h1>ELIXIR CUENTAS - <?php echo $_SESSION['usuario'] ?></h1>
+        <h1>ELIXIR CUENTAS</h1>
         <a id="logout-button" href="controladores/cerrar_sesion.php">Cerrar Sesión</a>
       </header>
 
