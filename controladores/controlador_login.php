@@ -17,7 +17,7 @@ if(!empty($_POST['btningresar'])){
             if ($datos['id_cargo'] == 1){
             header("location: admin.php"); 
         } else if ($datos['id_cargo'] == 2){
-            header("location: principal.php"); 
+            header("location: index.php"); 
         }
         } else {
             echo 'acceso denegado';

@@ -1,3 +1,12 @@
+<?php 
+session_start();
+
+if(empty($_SESSION['id'])){
+  header('location: login.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -12,26 +21,63 @@
     />
     <link rel="stylesheet" type="text/css" href="src/css/styles.css" />
   </head>
+  Funciona
   <body>
     <div class="wrapper">
-      <header>
+    <header>
         <img src="src/images/Logo.png" />
-        <h1>Iniciar sesion</h1>
+        <h1>ELIXIR CUENTAS</h1>
+        <a id="logout-button" href="controladores/cerrar_sesion.php">Cerrar Sesión</a>
       </header>
-      <div class="contenedor-formulario">
-        <form action="" method="POST">
 
-          <?php
-          include "modelo/conexion.php";
-          include "controladores/controlador_login.php"
-          ?>
-          
-          <p>Usuario: <input type="text" placeholder="Ingrese usuario" name="usuario"></p>
-          <p>Contraseña: <input type="password" placeholder="Ingrese contraseña" name="contrasena"></p>
-          <input type="submit" class="button" value="Ingresar" name = "btningresar">
-        </form>
+      <div class="contenedor-botones">
+        <input type="text" class="tres" id="perfil" placeholder="Perfil" />
+        <button class="tres" onclick="generarPlantilla()">
+          Generar Plantilla 1
+        </button>
       </div>
-      
+      <div id="contenido-copiado" class="container">DEBES</div>
+      <div class="botones">
+        <button id="generarconcinco" onclick="generarPlantilla2()">
+          Generar Plantilla 2
+        </button>
+        <button id="generarconseis" onclick="generarPlantilla3()">
+          Generar Plantilla 3
+        </button>
+        <button id="copiarexcel" onclick="copiarexcel()">Copiar Excel</button>
+        <button id="nombresyprecios" onclick="obtenerNombresYSumaPrecios()">
+          Nombres y precios
+        </button>
+        <button id="copiarcuenta" onclick="copiarcuenta()">
+          Copiar Cuenta
+        </button>
+        <button id="abrirpagina" onclick="abrirCuentaDesdeBoton()">
+          Abrir Pagina
+        </button>
+        <button id="plantilladenuevo" onclick="plantilladenuevo()">
+          Plantilla Pasada
+        </button>
+        <button id="recordardatos" onclick="recordarDatos()">
+          Recordar datos
+        </button>
+        <button id="cambiocorreo" onclick="cambioCorreo()">
+          Cambio correo
+        </button>
+        <button id="cambiocontra" onclick="cambioContra()">
+          Cambio contraseña
+        </button>
+        <button id="cambiocorreou" onclick="cambioCorreou()">
+          Cambio correo individual
+        </button>
+        <button id="cambiocontrau" onclick="cambioContrau()">
+          Cambio contraseña individual
+        </button>
+        <button id="renovacionseis" onclick="renovaciones()">
+          Renovaciones
+        </button>
+        <button id="renovacionnueve" onclick="renovaciones2()">
+          Renovaciones 2
+        </button>
       </div>
     </div>
 
