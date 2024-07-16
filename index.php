@@ -21,13 +21,16 @@ if(empty($_SESSION['id'])){
     />
     <link rel="stylesheet" type="text/css" href="src/css/styles.css" />
   </head>
-  Funciona
   <body>
     <div class="wrapper">
-    <header>
-        <img src="src/images/Logo.png" />
-        <h1>ELIXIR CUENTAS</h1>
-        <a id="logout-button" href="controladores/cerrar_sesion.php">Cerrar Sesión</a>
+      <header>
+        <div class="header-content">
+          <img src="src/images/Logo.png" />
+          <h1>ELIXIR CUENTAS</h1>
+        </div>
+        <a id="logout-button" href="controladores/cerrar_sesion.php"
+          >Cerrar Sesión</a
+        >
       </header>
 
       <div class="contenedor-botones">
@@ -36,7 +39,7 @@ if(empty($_SESSION['id'])){
           Generar Plantilla 1
         </button>
       </div>
-      <div id="contenido-copiado" class="container">DEBES</div>
+      <div id="contenido-copiado" class="container"></div>
       <div class="botones">
         <button id="generarconcinco" onclick="generarPlantilla2()">
           Generar Plantilla 2

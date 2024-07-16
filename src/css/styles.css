@@ -12,41 +12,6 @@ body {
   background: #efefef;
 }
 
-#logout-button {
-  background-color: #ff4c4c;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-#logout-button:hover {
-  background-color: #e04343;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #fff;
-  align-items: center;
-  padding: 20px;
-  margin-bottom: 20px;
-  overflow: auto;
-}
-header img {
-  width: 100px;
-  height: 100px;
-  margin-right: 15px;
-}
-header h1 {
-  font-size: 30px;
-  color: #333;
-  margin: 0;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -54,15 +19,59 @@ header h1 {
   text-align: center;
   width: 600px;
   max-width: 100%;
-  padding: 20px;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  padding-bottom: 20px;
 }
 
 .wrapper:hover {
   box-shadow: 0px 25px 35px rgba(0, 0, 0, 0.2);
+}
+
+header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #b8bbd1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+header img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+header h1 {
+  font-size: 30px;
+  color: #333;
+  margin: 0;
+}
+
+#logout-button {
+  background-color: #c63245;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  margin-right: 20px; /* Añade un margen izquierdo de 20px */
+}
+
+#logout-button:hover {
+  background-color: #28c432;
 }
 
 button,
@@ -79,21 +88,13 @@ button,
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
+button,
+.button:hover {
   background: rgb(0, 149, 27);
   transform: scale(1.02);
 }
 
-input[type="text"] {
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 15px;
-  text-align: center;
-  border: 2px solid #ccc;
-  border-radius: 15px;
-  transition: border-color 0.3s ease;
-}
-
+input[type="text"],
 input[type="password"] {
   padding: 10px;
   font-size: 16px;
@@ -108,6 +109,10 @@ input[type="text"]:focus,
 input[type="password"]:focus {
   border-color: #63a2ff;
   outline: none;
+}
+
+#contenido-copiado {
+  margin: 10px;
 }
 
 .contenedor-botones {
@@ -144,7 +149,6 @@ input[type="password"]:focus {
 .mensaje-container {
   background-color: #dcf8c6; /* Color de fondo del mensaje */
   border: 1px solid #ddd; /* Borde */
-  border-radius: 5px; /* Borde redondeado */
   padding: 10px; /* Espaciado interno */
   margin: 0 auto; /* Centrar horizontalmente */
   max-width: 80%; /* Anchura máxima */
