@@ -1,3 +1,12 @@
+<?php 
+session_start();
+
+if(empty($_SESSION['id'])){
+  header('location: login.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -10,13 +19,15 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="../src/css/styles.css" />
   </head>
+  
   <body>
     <div class="wrapper">
-      <header>
+    <header>
         <img src="Logo.png" />
-        <h1>ELIXIR CUENTAS</h1>
+        <h1>ELIXIR CUENTAS - <?php echo $_SESSION['usuario'] ?></h1>
+        <a id="logout-button" href="controladores/cerrar_sesion.php">Cerrar Sesión</a>
       </header>
 
       <div class="contenedor-botones">
