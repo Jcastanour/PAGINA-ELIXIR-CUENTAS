@@ -74,6 +74,10 @@ header h1 {
   background-color: #28c432;
 }
 
+.contenedor-formulario p {
+  text-align: left;
+}
+
 button,
 .button {
   font-size: 1.1rem;
@@ -99,7 +103,7 @@ input[type="password"] {
   padding: 10px;
   font-size: 16px;
   margin-bottom: 15px;
-  text-align: center;
+  text-align: left;
   border: 2px solid #ccc;
   border-radius: 15px;
   transition: border-color 0.3s ease;

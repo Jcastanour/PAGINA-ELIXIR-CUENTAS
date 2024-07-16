@@ -26,8 +26,8 @@
           include "controladores/controlador_login.php"
           ?>
           
-          <p>Usuario: <input type="text" placeholder="Ingrese usuario" name="usuario"></p>
-          <p>Contraseña: <input type="password" placeholder="Ingrese contraseña" name="contrasena"></p>
+          <p>Usuario: <br><input type="text" placeholder="Ingrese usuario" name="usuario"></p>
+          <p>Contraseña: <br><input type="password" placeholder="Ingrese contraseña" name="contrasena"></p>
           <input type="submit" class="button" value="Ingresar" name = "btningresar">
         </form>
       </div>
