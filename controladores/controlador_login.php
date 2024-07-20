@@ -14,6 +14,7 @@ if(!empty($_POST['btningresar'])){
         if ($datos){
             $_SESSION['id'] = $datos['id'];
             $_SESSION['usuario'] = $datos['usuario'];
+            $_SESSION['id_cargo'] = $datos['id_cargo'];
             if ($datos['id_cargo'] == 1){
             header("location: admin.php"); 
         } else if ($datos['id_cargo'] == 2){

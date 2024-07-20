@@ -117,6 +117,7 @@ input[type="password"]:focus {
 
 #contenido-copiado {
   margin: 10px;
+  word-break: break-all;
 }
 
 .contenedor-botones {
