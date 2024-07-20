@@ -81,7 +81,7 @@ if (empty($_SESSION['id'])) {
     </div>
   </div>
 
-  <script src="src/js/script cliente.js"></script>
+  <script src="src/js/script.js"></script>
 </body>
 
 </html>
