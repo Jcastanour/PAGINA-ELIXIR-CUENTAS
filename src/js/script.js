@@ -404,8 +404,8 @@ function copiarexcel() {
   } else {
     precioG = 6000;
   }
-
-  const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}\t"=+BUSCARV([@CORREO],'HOJA OCULTA CON TODOS LOS CORRE'!C:D,2,FALSO)"\t${precioG}`;
+  let contrasenaF = `=SI.ERROR(SI(ESBLANCO([@[FECHA DE VENTA]]),"FALTA FECHA VENTA",BUSCARX(1,(AJUSTES!$AC$3:$AC$2000=[@CUENTA])*(AJUSTES!$AD$3:$AD$2000=[@CORREO]),AJUSTES!$AE$3:$AE$2000)),"CORREO NO EXISTE")`;
+  const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}\t${contrasenaF}\t${precioG}`;
   navigator.clipboard
     .writeText(texto)
     .then(() => {
