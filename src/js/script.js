@@ -146,10 +146,24 @@ function actualizarContenidoCopiado() {
 
 function obtenerFechaFormateada() {
   const fecha = new Date();
-  const dia = fecha.getDate().toString().padStart(2, "0"); // Agrega un cero delante si es necesario
-  const mes = (fecha.getMonth() + 1).toString().padStart(2, "0"); // Agrega un cero delante si es necesario
-  const anio = fecha.getFullYear();
-  return `${dia}/${mes}/${anio}`;
+  let dia = fecha.getDate();
+  let mes = fecha.getMonth() + 1; // Los meses en JavaScript son de 0 a 11
+  let anio = fecha.getFullYear();
+
+  if (dia === 31) {
+    dia = 1;
+    mes += 1;
+    if (mes > 12) {
+      mes = 1;
+      anio += 1;
+    }
+  }
+
+  // Asegurarse de que día y mes tengan dos dígitos
+  const diaStr = dia.toString().padStart(2, "0");
+  const mesStr = mes.toString().padStart(2, "0");
+
+  return `${diaStr}/${mesStr}/${anio}`;
 }
 
 let contenidoGenerado;

@@ -21,31 +21,43 @@ if (empty($_SESSION['id']) || $_SESSION['id_cargo'] == 2) {
 <body>
     <h1 class="text-center p-3">admin</h1>
     <div class="container-fluid row">
-        <form class="col-4 p-3">
+        <form class="col-4 p-3" method="POST">
             <h3 class="col-4">Registro clientes</h3>
+
+            <?php
+
+            include "modelo/conexion.php";
+            include "controladores/controlador_register_admin"
+
+            ?>
+
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name=nombre>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                <input type="text" class="form-control" name=usuario>
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Whatasapp</label>
                 <input type="text" class="form-control" name=whatsapp>
             </div>
             <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Tipo</label>
+                <select class="form-select" name="tipo" required>
+                    <option value="" disabled selected>Selecciona un tipo</option>
+                    <option value="Demo">Demo</option>
+                    <option value="Cliente">Cliente</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                <input type="text" class="form-control" name=usuario>
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Contraseña</label>
                 <input type="text" class="form-control" name=contrasena>
             </div>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">tipo</label>
-                <input type="text" class="form-control" name=contrasena>
-            </div>
-            <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Fecha</label>
-                <input type="text" class="form-control" name=fecha>
+                <input type="date" class="form-control" name=fecha>
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary" name="btnregistrar" value="ok">Registrar</button>
@@ -68,19 +80,32 @@ if (empty($_SESSION['id']) || $_SESSION['id_cargo'] == 2) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Juan Pablo</td>
-                        <td>3024220918</td>
-                        <td>juanp1</td>
-                        <td>1234</td>
-                        <td>Cliente</td>
-                        <td>17/08/2024</td>
-                        <td>activo</td>
-                        <td>
-                            <a href="" class="btn btn-small btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="" class="btn btn-small btn-danger"><i class="fa-solid fa-trash"></i></a>
-                        </td </tr>
+                    <?php
+                    include "modelo/conexion.php";
+                    $sql = $conexion->query("SELECT usuarios.*, cargo.descripcion AS cargo
+                         FROM usuarios
+                         LEFT JOIN cargo ON usuarios.id_cargo = cargo.id");
+                    while ($datos = $sql->fetch_object()) {
+
+                    ?>
+
+                        <tr>
+                            <td><?= $datos->id ?></td>
+                            <td><?= $datos->nombre ?></td>
+                            <td><?= $datos->whatsapp ?></td>
+                            <td><?= $datos->usuario ?></td>
+                            <td><?= $datos->contrasena ?></td>
+                            <td><?= $datos->cargo ?></td>
+                            <td><?= $datos->fecha_vencimiento ?></td>
+                            <td><?= $datos->estado ?></td>
+
+                            <td>
+                                <a href="" class="btn btn-small btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="" class="btn btn-small btn-danger"><i class="fa-solid fa-trash"></i></a>
+                            </td </tr>
+
+                        <?php }
+                        ?>
 
                 </tbody>
             </table>
