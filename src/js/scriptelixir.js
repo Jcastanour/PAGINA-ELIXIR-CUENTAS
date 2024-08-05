@@ -415,6 +415,8 @@ function copiarexcel() {
     precioG = 12000;
   } else if (cuentaG === "COMBO PLUS") {
     precioG = 11000;
+  } else if (cuentaG === "DISNEY PREMIUM") {
+    precioG = 11000;
   } else {
     precioG = 6000;
   }
