@@ -376,7 +376,7 @@ function copiarexcel() {
 
   copiado = 1;
   let contrasenaF = `=SI.ERROR(SI(ESBLANCO([@[FECHA DE VENTA]]),"FALTA FECHA VENTA",BUSCARX(1,(TablaCuentas[CUENTA]=[@CUENTA])*(TablaCuentas[CORREO]=[@CORREO]),TablaCuentas[CONTRASEÑA])),"CORREO NO EXISTE")`;
-  const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}}`;
+  const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}`;
   navigator.clipboard
     .writeText(texto)
     .then(() => {
