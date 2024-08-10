@@ -81,7 +81,7 @@ if (empty($_SESSION['id'])) {
     </div>
   </div>
 
-  <script src="src/js/script cliente.js?v=<?php echo (rand()); ?>"></script>
+  <script src="src/js/scriptelixir.js?v=<?php echo (rand()); ?>"></script>
 </body>
 
 </html>
