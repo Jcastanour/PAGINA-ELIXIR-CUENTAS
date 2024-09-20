@@ -404,7 +404,7 @@ function copiarexcel() {
   } else if (cuentaG === "NETFLIX EXTRA") {
     precioG = 15000;
   } else if (cuentaG === "NETFLIX CELULAR/PC") {
-    precioG = 8000;
+    precioG = 10000;
   } else if (cuentaG === "PLEX") {
     precioG = 8000;
   } else if (cuentaG === "PLEX 2") {
