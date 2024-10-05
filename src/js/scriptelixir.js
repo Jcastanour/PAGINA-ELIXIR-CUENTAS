@@ -404,7 +404,7 @@ function copiarexcel() {
   } else if (cuentaG === "NETFLIX EXTRA") {
     precioG = 15000;
   } else if (cuentaG === "NETFLIX CELULAR/PC") {
-    precioG = 8000;
+    precioG = 12000;
   } else if (cuentaG === "PLEX") {
     precioG = 8000;
   } else if (cuentaG === "PLEX 2") {
@@ -964,11 +964,11 @@ function cambioCorreo() {
 
         // Formatear el mensaje de cambio de contraseña con el perfil y el nombre en negrita
         const mensaje =
-          `Hola, previniendo un problema con ${cuenta} se hara un cambio de cuenta.\n\n` +
+          `Hola, previniendo un problema con ${cuenta} se hizo un cambio en el correo. Paso de ser @hotmail.com a @dwolf.lat.\n\n` +
           `*${cuenta.toUpperCase()} ${nombre.toUpperCase()}*\n` +
           `*Correo:* ${correo}\n` +
           `*Contraseña:* ${contraseña}\n\n` +
-          `*Si se te llega a cerrar sesión, ingresa de nuevo con esta cuenta porfa.*`;
+          `*Si se te llega a cerrar sesión, sigues con la misma cuenta pero ingresa de nuevo con este correo porfa.*`;
 
         // Crear el enlace de WhatsApp sin el símbolo "+"
         const enlaceWhatsApp = `https://wa.me/${telefonoSinPlus}?text=${encodeURIComponent(
