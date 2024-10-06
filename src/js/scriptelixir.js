@@ -964,11 +964,11 @@ function cambioCorreo() {
 
         // Formatear el mensaje de cambio de contraseña con el perfil y el nombre en negrita
         const mensaje =
-          `Hola, previniendo un problema con ${cuenta} se hizo un cambio en el correo. Paso de ser @hotmail.com a @dwolf.lat.\n\n` +
+          `Hola, previniendo un problema con ${cuenta} se hizo un cambio en el correo.\n\n` +
           `*${cuenta.toUpperCase()} ${nombre.toUpperCase()}*\n` +
           `*Correo:* ${correo}\n` +
           `*Contraseña:* ${contraseña}\n\n` +
-          `*Si se te llega a cerrar sesión, sigues con la misma cuenta pero ingresa de nuevo con este correo porfa.*`;
+          `*Si se te llega a cerrar sesión ingresa de nuevo con este correo porfa.*`;
 
         // Crear el enlace de WhatsApp sin el símbolo "+"
         const enlaceWhatsApp = `https://wa.me/${telefonoSinPlus}?text=${encodeURIComponent(
