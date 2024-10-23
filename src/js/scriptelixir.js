@@ -420,7 +420,7 @@ function copiarexcel() {
   } else {
     precioG = 6000;
   }
-  let contrasenaF = `=SI.ERROR(SI(ESBLANCO([@[FECHA DE VENTA]]),"FALTA FECHA VENTA",BUSCARX(1,(AJUSTES!$AB$3:$AB$2000=[@CUENTA])*(AJUSTES!$AC$3:$AC$2000=[@CORREO]),AJUSTES!$AD$3:$AD$2000)),"CORREO NO EXISTE")`;
+  let contrasenaF = `=SI([@COMPLETA]="SI","CUENTA COMPLETA",SI.ERROR(SI(ESBLANCO([@[FECHA DE VENTA]]),"FALTA FECHA VENTA",BUSCARX(1,(AJUSTES!$AB$3:$AB$2000=[@CUENTA])*(AJUSTES!$AC$3:$AC$2000=[@CORREO]),AJUSTES!$AD$3:$AD$2000)),"CORREO NO EXISTE"))`;
   const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}\t${contrasenaF}\t${precioG}`;
   navigator.clipboard
     .writeText(texto)
