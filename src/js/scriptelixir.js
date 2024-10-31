@@ -767,11 +767,13 @@ function renovaciones2() {
         const nombrePerfil = datos[0];
         const whatsapp = datos[1];
         let cuenta = datos[3];
+        let correo = datos[4];
+        let contra = datos[5];
         const precio = parseFloat(datos[6].replace(/[^\d.]/g, ""));
         const diasRestantes = parseInt(datos[8]);
 
-        // Procesar solo si los días restantes son 0
-        if (diasRestantes === 0) {
+        // Procesar solo si los días restantes son 1
+        if (diasRestantes === 1) {
           // Si el nombre de la cuenta es "NETFLIX EXTRA", reemplazarlo por "NETFLIX TELEVISOR"
           if (cuenta === "NETFLIX EXTRA") {
             cuenta = "NETFLIX TELEVISOR";
@@ -790,6 +792,7 @@ function renovaciones2() {
           agrupadosPorWhatsApp[whatsapp].perfiles.push({
             cuenta,
             nombrePerfil,
+            correo: contra.includes("CUENTA COMPLETA") ? correo : "", // Agregar correo si la contraseña indica "CUENTA COMPLETA"
           });
           agrupadosPorWhatsApp[whatsapp].cuentasRepetidas[cuenta] =
             (agrupadosPorWhatsApp[whatsapp].cuentasRepetidas[cuenta] || 0) + 1;
@@ -804,7 +807,11 @@ function renovaciones2() {
         (whatsapp, index) => {
           const cuentaInfo = agrupadosPorWhatsApp[whatsapp];
           const cuentas = cuentaInfo.perfiles
-            .map((perfil) => `*${perfil.cuenta}* - ${perfil.nombrePerfil}`)
+            .map((perfil) =>
+              perfil.correo
+                ? `*${perfil.cuenta}* - ${perfil.correo}`
+                : `*${perfil.cuenta}* - ${perfil.nombrePerfil}`
+            )
             .join("\n");
 
           const sumaFormateada = cuentaInfo.sumaPrecios.toLocaleString(
@@ -817,7 +824,7 @@ function renovaciones2() {
             }
           );
 
-          const mensaje = `Hola 👋🏻, las siguientes cuentas vencieron el dia de hoy:\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\nEl no contestar este mensaje se asumirá como que se debe hacer cierre.`;
+          const mensaje = `Hola 👋🏻, las siguientes cuentas vencen el dia de mañana:\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\nRecuerda que si no contestas este mensaje asumiremos que se debe hacer cierre.`;
 
           // Crear el enlace de WhatsApp sin el símbolo "+"
           const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
