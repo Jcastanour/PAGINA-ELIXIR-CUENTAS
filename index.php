@@ -72,7 +72,7 @@ if (empty($_SESSION['id'])) {
       <button id="cambiocontrau" onclick="cambioContrau()">
         Cambio contraseña individual
       </button>
-      <button id="renovaciondiez" onclick="renovaciones()">
+      <button id="renovacionocho" onclick="renovaciones()">
         Renovaciones
       </button>
       <button id="renovacionnueve" onclick="renovaciones2()">

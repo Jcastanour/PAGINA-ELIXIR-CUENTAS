@@ -115,6 +115,12 @@ function actualizarContenidoCopiado() {
           document.getElementById("abrirpagina").style.display = "inline";
           document.getElementById("copiarcuenta").style.display = "inline";
         } else if (
+          (contenidoG + (filasG - 1)) % 8 === 0 &&
+          (contenidoG + (filasG - 1)) / 8 === filasG
+        ) {
+          contenidoVisualizado = `<p>(${contenidoG}) Celdas para pegar en excel</p>`;
+          document.getElementById("renovacionocho").style.display = "inline";
+        } else if (
           (contenidoG + (filasG - 1)) % 9 === 0 &&
           (contenidoG + (filasG - 1)) / 9 === filasG
         ) {
