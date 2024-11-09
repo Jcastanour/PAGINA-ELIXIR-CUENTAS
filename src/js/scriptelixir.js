@@ -658,7 +658,7 @@ function renovaciones() {
         const diasRestantes = parseInt(datos[8]);
 
         // Procesar solo si los días restantes son 1
-        if (diasRestantes === 1) {
+        if (diasRestantes === 0) {
           // Si el nombre de la cuenta es "NETFLIX EXTRA", reemplazarlo por "NETFLIX TELEVISOR"
           if (cuenta === "NETFLIX EXTRA") {
             cuenta = "NETFLIX TELEVISOR";
