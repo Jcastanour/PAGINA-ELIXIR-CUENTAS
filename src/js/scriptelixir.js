@@ -631,8 +631,8 @@ function renovaciones() {
       // Verificar el formato esperado
       const contenido = text.trim().split("\t");
       if (
-        contenido.length !== 10 &&
-        (contenido.length + (filas.length - 1)) % 10 !== 0
+        contenido.length !== 8 &&
+        (contenido.length + (filas.length - 1)) % 8 !== 0
       ) {
         alert(
           "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
@@ -655,7 +655,7 @@ function renovaciones() {
         let correo = datos[4];
         let contra = datos[5];
         const precio = parseFloat(datos[6].replace(/[^\d.]/g, ""));
-        const diasRestantes = parseInt(datos[8]);
+        const diasRestantes = 0;
 
         // Procesar solo si los días restantes son 1
         if (diasRestantes === 0) {
