@@ -107,7 +107,7 @@ function actualizarContenidoCopiado() {
             document.getElementById("recordardatos").style.display = "inline";
             document.getElementById("cambiocorreo").style.display = "inline";
             document.getElementById("cambiocontra").style.display = "inline";
-            document.getElementById("renovacionseis").style.display = "inline";
+            document.getElementById("renovaciondiez").style.display = "inline";
           }
         } else if (contenidoG === 7 && copiado === 1) {
           contenidoVisualizado = `<p>(${contenidoG}) Celdas para pegar en excel</p>`;
@@ -631,8 +631,8 @@ function renovaciones() {
       // Verificar el formato esperado
       const contenido = text.trim().split("\t");
       if (
-        contenido.length !== 6 &&
-        (contenido.length + (filas.length - 1)) % 6 !== 0
+        contenido.length !== 10 &&
+        (contenido.length + (filas.length - 1)) % 10 !== 0
       ) {
         alert(
           "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
@@ -651,12 +651,14 @@ function renovaciones() {
         // Extraer datos relevantes
         const nombrePerfil = datos[0];
         const whatsapp = datos[1];
-        let cuenta = datos[2];
-        const precio = parseFloat(datos[3].replace(/[^\d.]/g, ""));
-        const diasRestantes = parseInt(datos[5]);
+        let cuenta = datos[3];
+        let correo = datos[4];
+        let contra = datos[5];
+        const precio = parseFloat(datos[6].replace(/[^\d.]/g, ""));
+        const diasRestantes = parseInt(datos[8]);
 
-        // Procesar solo si los días restantes son 0
-        if (diasRestantes === 0) {
+        // Procesar solo si los días restantes son 1
+        if (diasRestantes === 1) {
           // Si el nombre de la cuenta es "NETFLIX EXTRA", reemplazarlo por "NETFLIX TELEVISOR"
           if (cuenta === "NETFLIX EXTRA") {
             cuenta = "NETFLIX TELEVISOR";
@@ -675,6 +677,7 @@ function renovaciones() {
           agrupadosPorWhatsApp[whatsapp].perfiles.push({
             cuenta,
             nombrePerfil,
+            correo: contra.includes("CUENTA COMPLETA") ? correo : "", // Agregar correo si la contraseña indica "CUENTA COMPLETA"
           });
           agrupadosPorWhatsApp[whatsapp].cuentasRepetidas[cuenta] =
             (agrupadosPorWhatsApp[whatsapp].cuentasRepetidas[cuenta] || 0) + 1;
@@ -689,7 +692,11 @@ function renovaciones() {
         (whatsapp, index) => {
           const cuentaInfo = agrupadosPorWhatsApp[whatsapp];
           const cuentas = cuentaInfo.perfiles
-            .map((perfil) => `*${perfil.cuenta}* - ${perfil.nombrePerfil}`)
+            .map((perfil) =>
+              perfil.correo
+                ? `*${perfil.cuenta}* - ${perfil.correo}`
+                : `*${perfil.cuenta}* - ${perfil.nombrePerfil}`
+            )
             .join("\n");
 
           const sumaFormateada = cuentaInfo.sumaPrecios.toLocaleString(
@@ -702,7 +709,7 @@ function renovaciones() {
             }
           );
 
-          const mensaje = `Hola 👋🏻, las siguientes cuentas vencieron el dia de hoy:\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\nEl no contestar este mensaje se asumirá como que se debe hacer cierre.`;
+          const mensaje = `Hola 👋🏻, las siguientes cuentas vencieron el dia de hoy:\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\nRecuerda que si no contestas este mensaje asumiremos que se debe hacer cierre.`;
 
           // Crear el enlace de WhatsApp sin el símbolo "+"
           const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
