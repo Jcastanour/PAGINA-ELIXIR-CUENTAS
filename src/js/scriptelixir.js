@@ -418,11 +418,13 @@ function copiarexcel() {
   } else if (cuentaG === "PLEX 4") {
     precioG = 20000;
   } else if (cuentaG === "IPTV") {
-    precioG = 12000;
+    precioG = 9000;
   } else if (cuentaG === "COMBO PLUS") {
     precioG = 11000;
   } else if (cuentaG === "DISNEY PREMIUM") {
-    precioG = 11000;
+    precioG = 12000;
+  } else if (cuentaG === "AMAZON") {
+    precioG = 7000;
   } else {
     precioG = 6000;
   }
