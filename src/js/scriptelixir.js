@@ -1180,7 +1180,7 @@ function confirmarrenovacion() {
         .join("\n\n"); // Unir las salidas de cada fila separadas por dos saltos de línea
 
       const salidaFinal =
-        salidaFormateada + "\n*Gracias por continuar con nosotros*🫶🏼";
+        salidaFormateada + "\n\n*Gracias por continuar con nosotros* 🫶🏼";
       // Colocar la salida formateada en el portapapeles
       return navigator.clipboard.writeText(salidaFinal);
     })
