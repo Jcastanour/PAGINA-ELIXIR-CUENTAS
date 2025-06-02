@@ -1170,7 +1170,7 @@ function confirmarrenovacion() {
 
           // Formatear la salida de esta fila
           return (
-            `*CUENTA RENOVADA*\n\n` +
+            `*CUENTA RENOVADA* ✅\n` +
             `*${perfil.toUpperCase()} ${nombre.toUpperCase()}*\n` +
             `*Correo:* ${correo}\n` +
             `*Contraseña:* ${contraseña}\n` +
@@ -1179,8 +1179,10 @@ function confirmarrenovacion() {
         })
         .join("\n\n"); // Unir las salidas de cada fila separadas por dos saltos de línea
 
+      const salidaFinal =
+        salidaFormateada + "\n*Gracias por continuar con nosotros*🫶🏼";
       // Colocar la salida formateada en el portapapeles
-      return navigator.clipboard.writeText(salidaFormateada);
+      return navigator.clipboard.writeText(salidaFinal);
     })
     .then(() => {
       console.log(
