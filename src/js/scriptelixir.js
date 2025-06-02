@@ -126,6 +126,8 @@ function actualizarContenidoCopiado() {
         ) {
           contenidoVisualizado = `<p>(${contenidoG}) Celdas para pegar en excel</p>`;
           document.getElementById("renovacionnueve").style.display = "inline";
+          document.getElementById("renovacionconfirmacion").style.display =
+            "inline";
         }
       } else if (text.includes("*")) {
         if (plantillabool === 1) {
@@ -1121,6 +1123,68 @@ function cambioCorreou() {
     .then(() => {
       console.log(
         "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles."
+      );
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+    });
+}
+
+function confirmarrenovacion() {
+  // Obtener el texto del portapapeles
+  navigator.clipboard
+    .readText()
+    .then((text) => {
+      // Dividir la cadena en elementos separados por tabuladores
+      const filas = text.trim().split("\n");
+
+      // Verificar el formato esperado
+      const contenido = text.trim().split("\t");
+      if (
+        contenido.length !== 9 &&
+        (contenido.length + (filas.length - 1)) % 9 !== 0
+      ) {
+        alert(
+          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas)."
+        );
+        return;
+      }
+
+      // Procesar cada fila
+      const salidaFormateada = filas
+        .map((fila) => {
+          // Dividir la fila en elementos separados por tabuladores
+          const datos = fila.split("\t");
+
+          // Obtener los valores relevantes
+          let perfil = datos[3];
+          const nombre = datos[0];
+          const fechavencimiento = datos[7];
+          const correo = datos[4];
+          const contraseña = datos[5];
+
+          // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
+          if (perfil === "NETFLIX EXTRA") {
+            perfil = "NETFLIX TELEVISOR";
+          }
+
+          // Formatear la salida de esta fila
+          return (
+            `*CUENTA RENOVADA*\n\n` +
+            `*${perfil.toUpperCase()} ${nombre.toUpperCase()}*\n` +
+            `*Correo:* ${correo}\n` +
+            `*Contraseña:* ${contraseña}\n` +
+            `*Vence el:* ${fechavencimiento}`
+          );
+        })
+        .join("\n\n"); // Unir las salidas de cada fila separadas por dos saltos de línea
+
+      // Colocar la salida formateada en el portapapeles
+      return navigator.clipboard.writeText(salidaFormateada);
+    })
+    .then(() => {
+      console.log(
+        "La salida formateada se ha copiado correctamente al portapapeles."
       );
     })
     .catch((err) => {

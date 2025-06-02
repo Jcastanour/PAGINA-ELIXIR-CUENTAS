@@ -78,6 +78,9 @@ if (empty($_SESSION['id'])) {
       <button id="renovacionnueve" onclick="renovaciones2()">
         Renovaciones 2
       </button>
+      <button id="renovacionconfirmacion" onclick="confirmarrenovacion()">
+        Confirmar Renovaciones
+      </button>
     </div>
   </div>
 
