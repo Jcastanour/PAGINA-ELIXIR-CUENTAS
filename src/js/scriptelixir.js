@@ -533,8 +533,8 @@ function recordarDatos() {
           // Obtener los valores relevantes
           let perfil = datos[3];
           const nombre = datos[0];
-          const correo = datos[4];
-          const contraseña = datos[5];
+          let correo = datos[4];
+          let contraseña = datos[5];
 
           // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
           if (perfil === "NETFLIX EXTRA") {
@@ -1169,8 +1169,8 @@ function confirmarrenovacion() {
           let perfil = datos[3];
           const nombre = datos[0];
           const fechavencimiento = datos[7];
-          const correo = datos[4];
-          const contraseña = datos[5];
+          let correo = datos[4];
+          let contraseña = datos[5];
 
           // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
           if (perfil === "NETFLIX EXTRA") {
