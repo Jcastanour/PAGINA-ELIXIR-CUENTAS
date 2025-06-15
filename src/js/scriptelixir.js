@@ -429,6 +429,8 @@ function copiarexcel() {
     precioG = 7000;
   } else if (cuentaG === "YOUTUBE PERSONAL") {
     precioG = 11000;
+  } else if (cuentaG === "CHATGPT") {
+    precioG = 15000;
   } else {
     precioG = 6000;
   }
@@ -537,6 +539,13 @@ function recordarDatos() {
           // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
           if (perfil === "NETFLIX EXTRA") {
             perfil = "NETFLIX TELEVISOR";
+            correo = "Cuenta Personal";
+            contrasena = "";
+          }
+
+          if (perfil === "YOUTUBE PERSONAL") {
+            correo = "Cuenta Personal";
+            contrasena = "";
           }
 
           if (perfil === "COMBO PLUS") {
@@ -1166,6 +1175,13 @@ function confirmarrenovacion() {
           // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
           if (perfil === "NETFLIX EXTRA") {
             perfil = "NETFLIX TELEVISOR";
+            correo = "Cuenta Personal";
+            contrasena = "";
+          }
+
+          if (perfil === "YOUTUBE PERSONAL") {
+            correo = "Cuenta Personal";
+            contrasena = "";
           }
 
           // Formatear la salida de esta fila
