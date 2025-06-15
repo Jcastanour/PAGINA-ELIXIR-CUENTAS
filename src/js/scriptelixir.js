@@ -540,12 +540,12 @@ function recordarDatos() {
           if (perfil === "NETFLIX EXTRA") {
             perfil = "NETFLIX TELEVISOR";
             correo = "Cuenta Personal";
-            contrasena = "";
+            contraseña = "";
           }
 
           if (perfil === "YOUTUBE PERSONAL") {
             correo = "Cuenta Personal";
-            contrasena = "";
+            contraseña = "";
           }
 
           if (perfil === "COMBO PLUS") {
@@ -1176,12 +1176,12 @@ function confirmarrenovacion() {
           if (perfil === "NETFLIX EXTRA") {
             perfil = "NETFLIX TELEVISOR";
             correo = "Cuenta Personal";
-            contrasena = "";
+            contraseña = "";
           }
 
           if (perfil === "YOUTUBE PERSONAL") {
             correo = "Cuenta Personal";
-            contrasena = "";
+            contraseña = "";
           }
 
           // Formatear la salida de esta fila
