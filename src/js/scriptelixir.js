@@ -799,8 +799,6 @@ function renovaciones2() {
         "buen día, ¿cómo estás? 👋🏻 Estas cuentas estan proximas a vencer el dia de mañana:",
       ];
 
-      const saludo = saludos[Math.floor(Math.random() * saludos.length)];
-
       // Inicializar un objeto para agrupar por número de WhatsApp
       const agrupadosPorWhatsApp = {};
 
@@ -869,6 +867,8 @@ function renovaciones2() {
               maximumFractionDigits: 0,
             }
           );
+
+          const saludo = saludos[Math.floor(Math.random() * saludos.length)];
 
           const cierresRenovacion = [
             "Avísame si deseas continuar con la renovación, por favor. 😊",
