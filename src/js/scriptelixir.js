@@ -783,6 +783,24 @@ function renovaciones2() {
         return;
       }
 
+      const saludos = [
+        "holaa 👋🏻, las siguientes cuentas vencen el dia de mañana:",
+        "¡Hola! 😊 Espero que estés muy bien, las siguientes cuentas vencen el dia de mañana:",
+        "hola 👋🏻, las siguientes cuentas vencen el dia de mañana:",
+        "buen día 👋🏻, las siguientes cuentas vencen el dia de mañana:",
+        "holaa, ¿cómo estás? 👋🏻 Las siguientes cuentas vencen el dia de mañana:",
+        "Buenas👋🏻, Las siguientes cuentas vencen el dia de mañana:",
+        "buen día, ¿cómo estás? 👋🏻 Las siguientes cuentas vencen el dia de mañana:",
+        "¡Buenos días! 📆, las siguientes cuentas vencen el día de mañana:",
+        "¡Hola! 🌟, las siguientes cuenticas vencen el día de mañana:",
+        "Hola 😄, las siguientes cuentas vencen el día de mañana:",
+        "Hola, tus cuenticas vencen el dia de mañana:",
+        "Holaa 🌟, te comparto las cuenticas que vencen el día de mañana:",
+        "buen día, ¿cómo estás? 👋🏻 Estas cuentas estan proximas a vencer el dia de mañana:",
+      ];
+
+      const saludo = saludos[Math.floor(Math.random() * saludos.length)];
+
       // Inicializar un objeto para agrupar por número de WhatsApp
       const agrupadosPorWhatsApp = {};
 
@@ -852,7 +870,25 @@ function renovaciones2() {
             }
           );
 
-          const mensaje = `Hola 👋🏻, las siguientes cuentas vencen el dia de mañana:\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\nRecuerda que si no contestas este mensaje asumiremos que se debe hacer cierre.`;
+          const cierresRenovacion = [
+            "Avísame si deseas continuar con la renovación, por favor. 😊",
+            "Quedo atento a tu confirmación para renovar 😊",
+            "Quedo pendiente de tu confirmación para renovar.",
+            "Recuerda que si no recibimos respuesta, se entendera que no deseas renovar. 🔔",
+            "Si no respondes, procederemos con el cierre de la cuenta.",
+            "Confírmame si deseas renovar para evitar el cierre automático 🔔",
+            "Avísame si quieres continuar con la renovación ✨",
+            "Si tienes dudas o deseas renovar, házmelo saber 🙌",
+            "¡Espero tu ok para renovar! 😉",
+            "Tu respuesta es importante: sin confirmación, tendriamos que cerrar la cuenta. 🔒",
+          ];
+
+          const cierre =
+            cierresRenovacion[
+              Math.floor(Math.random() * cierresRenovacion.length)
+            ];
+
+          const mensaje = `${saludo}\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\n${cierre}`;
 
           // Crear el enlace de WhatsApp sin el símbolo "+"
           const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
