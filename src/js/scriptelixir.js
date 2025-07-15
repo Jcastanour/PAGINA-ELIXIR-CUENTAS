@@ -783,22 +783,6 @@ function renovaciones2() {
         return;
       }
 
-      const saludos = [
-        "holaa 👋🏻, las siguientes cuentas vencen el dia de mañana:",
-        "¡Hola! 😊 Espero que estés muy bien, las siguientes cuentas vencen el dia de mañana:",
-        "hola 👋🏻, las siguientes cuentas vencen el dia de mañana:",
-        "buen día 👋🏻, las siguientes cuentas vencen el dia de mañana:",
-        "holaa, ¿cómo estás? 👋🏻 Las siguientes cuentas vencen el dia de mañana:",
-        "Buenas👋🏻, Las siguientes cuentas vencen el dia de mañana:",
-        "buen día, ¿cómo estás? 👋🏻 Las siguientes cuentas vencen el dia de mañana:",
-        "¡Buenos días! 📆, las siguientes cuentas vencen el día de mañana:",
-        "¡Hola! 🌟, las siguientes cuenticas vencen el día de mañana:",
-        "Hola 😄, las siguientes cuentas vencen el día de mañana:",
-        "Hola, tus cuenticas vencen el dia de mañana:",
-        "Holaa 🌟, te comparto las cuenticas que vencen el día de mañana:",
-        "buen día, ¿cómo estás? 👋🏻 Estas cuentas estan proximas a vencer el dia de mañana:",
-      ];
-
       // Inicializar un objeto para agrupar por número de WhatsApp
       const agrupadosPorWhatsApp = {};
 
@@ -867,6 +851,22 @@ function renovaciones2() {
               maximumFractionDigits: 0,
             }
           );
+
+          const saludos = [
+            "holaa 👋🏻, las siguientes cuentas vencen el dia de mañana:",
+            "¡Hola! 😊 Espero que estés muy bien, las siguientes cuentas vencen el dia de mañana:",
+            "hola 👋🏻, las siguientes cuentas vencen el dia de mañana:",
+            "buen día 👋🏻, las siguientes cuentas vencen el dia de mañana:",
+            "holaa, ¿cómo estás? 👋🏻 Las siguientes cuentas vencen el dia de mañana:",
+            "Buenas👋🏻, Las siguientes cuentas vencen el dia de mañana:",
+            "buen día, ¿cómo estás? 👋🏻 Las siguientes cuentas vencen el dia de mañana:",
+            "¡Buenos días! 📆, las siguientes cuentas vencen el día de mañana:",
+            "¡Hola! 🌟, las siguientes cuenticas vencen el día de mañana:",
+            "Hola 😄, las siguientes cuentas vencen el día de mañana:",
+            "Hola, tus cuenticas vencen el dia de mañana:",
+            "Holaa 🌟, te comparto las cuenticas que vencen el día de mañana:",
+            "buen día, ¿cómo estás? 👋🏻 Estas cuentas estan proximas a vencer el dia de mañana:",
+          ];
 
           const saludo = saludos[Math.floor(Math.random() * saludos.length)];
 
