@@ -26,6 +26,8 @@ function actualizarContenidoCopiado() {
         document.querySelector(".contenedor-botones").style.display = "block";
       }
 
+    
+      console.log(filasG);
       if (text.includes("\t")) {
         // Si el texto contiene tabuladores, mostrar como lista
         filasG = text.trim().split("\n").length;

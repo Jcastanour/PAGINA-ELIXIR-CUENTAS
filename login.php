@@ -1,12 +1,4 @@
-<?php
-session_start();
 
-if (!empty($_SESSION['id'])) {
-  header('location: index.php');
-}
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -29,10 +21,6 @@ if (!empty($_SESSION['id'])) {
     </header>
     <div class="contenedor-formulario">
       <form action="" method="POST">
-        <?php
-        include "modelo/conexion.php";
-        include "controladores/controlador_login.php"
-        ?>
         <p>Usuario: <br><input type="text" placeholder="Ingrese usuario" name="usuario"></p>
         <p>Contraseña: <br><input type="password" placeholder="Ingrese contraseña" name="contrasena"></p>
         <input type="submit" class="button" value="Ingresar" name="btningresar">

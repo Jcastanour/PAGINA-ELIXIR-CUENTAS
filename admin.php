@@ -1,9 +1,9 @@
 <?php
-session_start();
+// session_start();
 
-if (empty($_SESSION['id']) || $_SESSION['id_cargo'] == 2) {
-    header('location: index.php');
-}
+// if (empty($_SESSION['id']) || $_SESSION['id_cargo'] == 2) {
+//     header('location: index.php');
+// }
 
 ?>
 
