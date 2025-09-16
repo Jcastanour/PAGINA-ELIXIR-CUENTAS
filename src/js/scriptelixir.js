@@ -26,7 +26,6 @@ function actualizarContenidoCopiado() {
         document.querySelector(".contenedor-botones").style.display = "block";
       }
 
-    
       console.log(filasG);
       if (text.includes("\t")) {
         // Si el texto contiene tabuladores, mostrar como lista
@@ -854,43 +853,36 @@ function renovaciones2() {
             }
           );
 
+          const nombreSaludo =
+            (cuentaInfo.perfiles[0].nombrePerfil || "").split(" ")[0] || "";
+
           const saludos = [
-            "holaa 👋🏻, las siguientes cuentas vencen el dia de mañana:",
-            "¡Hola! 😊 Espero que estés muy bien, las siguientes cuentas vencen el dia de mañana:",
-            "hola 👋🏻, las siguientes cuentas vencen el dia de mañana:",
-            "buen día 👋🏻, las siguientes cuentas vencen el dia de mañana:",
-            "holaa, ¿cómo estás? 👋🏻 Las siguientes cuentas vencen el dia de mañana:",
-            "Buenas👋🏻, Las siguientes cuentas vencen el dia de mañana:",
-            "buen día, ¿cómo estás? 👋🏻 Las siguientes cuentas vencen el dia de mañana:",
-            "¡Buenos días! 📆, las siguientes cuentas vencen el día de mañana:",
+            "Hola {nombre} 👋",
+            "¡Hola {nombre}! 😊",
+            "Buen día {nombre} 👋",
+            "Hey {nombre} 😎",
+            "¡Hola {nombre}! 🌟",
+            "Holaa 🌟",
+            "¡Hola! 😊 Espero que estés muy bien",
+            "Buen día 👋🏻",
+            "¡Buenos días! 📆",
             "¡Hola! 🌟, las siguientes cuenticas vencen el día de mañana:",
-            "Hola 😄, las siguientes cuentas vencen el día de mañana:",
-            "Hola, tus cuenticas vencen el dia de mañana:",
-            "Holaa 🌟, te comparto las cuenticas que vencen el día de mañana:",
-            "buen día, ¿cómo estás? 👋🏻 Estas cuentas estan proximas a vencer el dia de mañana:",
+            "Hola 😄",
+            "Buen día, ¿cómo estás?",
           ];
 
-          const saludo = saludos[Math.floor(Math.random() * saludos.length)];
+          const saludo = saludos[
+            Math.floor(Math.random() * saludos.length)
+          ].replace("{nombre}", nombreSaludo);
 
-          const cierresRenovacion = [
-            "Avísame si deseas continuar con la renovación, por favor. 😊",
-            "Quedo atento a tu confirmación para renovar 😊",
-            "Quedo pendiente de tu confirmación para renovar.",
-            "Recuerda que si no recibimos respuesta, se entendera que no deseas renovar. 🔔",
-            "Si no respondes, procederemos con el cierre de la cuenta.",
-            "Confírmame si deseas renovar para evitar el cierre automático 🔔",
-            "Avísame si quieres continuar con la renovación ✨",
-            "Si tienes dudas o deseas renovar, házmelo saber 🙌",
-            "¡Espero tu ok para renovar! 😉",
-            "Tu respuesta es importante: sin confirmación, tendriamos que cerrar la cuenta. 🔒",
-          ];
+          const pregunta = "¿Quieres renovar por otro mes?";
+          const opciones = "✅ Sí, renuevo\n❌ No, gracias";
+          const plazo24h =
+            "Te agradezco que me confirmes en las próximas 24 h. Si necesitas más tiempo, avísame y lo anotamos. 🙌";
+          const optout =
+            "> (Si prefieres no recibir recordatorios, dime y lo quitamos)";
 
-          const cierre =
-            cierresRenovacion[
-              Math.floor(Math.random() * cierresRenovacion.length)
-            ];
-
-          const mensaje = `${saludo}\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\n${cierre}`;
+          const mensaje = `${saludo}\n\nTus cuentas vencen mañana:\n\n${cuentas}\n\n💲 Total: ${sumaFormateada}\n\n${pregunta}\n\n${opciones}\n\n${plazo24h}\n${optout}`;
 
           // Crear el enlace de WhatsApp sin el símbolo "+"
           const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
@@ -937,7 +929,7 @@ function cambioContra() {
         ((contenido.length + (filas.length - 1)) % 6 !== 0)
       ) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas)."
         );
         return;
       }
