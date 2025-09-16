@@ -745,12 +745,30 @@ function renovaciones() {
         }
       );
 
+      // ===partir en tandas y armar mensaje gigante ===
+      const tamTanda = 10; // 10 por tanda
+      const tandas = [];
+      for (let i = 0; i < enlacesConPerfil.length; i += tamTanda) {
+        tandas.push(enlacesConPerfil.slice(i, i + tamTanda));
+      }
+
+      // Texto de cada tanda con encabezado
+      const bloquesTanda = tandas.map((t, idx, arr) => {
+        const titulo =
+          idx === arr.length - 1
+            ? `*Última Tanda (${idx + 1}) - Renovación - ${fechaActual}*`
+            : `*Tanda ${idx + 1} - Renovación - ${fechaActual}*`;
+        return `${titulo}\n\n${t.join("\n\n")}`;
+      });
+
+      // Mensaje gigante: todas las tandas separadas por una línea
+      const mensajeGigante = bloquesTanda.join("\n\n——————————————\n\n");
       // Crear el mensaje de renovación
-      const mensajeRenovacion =
-        `*Renovación - ${fechaActual}*\n\n` + enlacesConPerfil.join("\n\n");
+      // const mensajeRenovacion =
+      //   `*Renovación - ${fechaActual}*\n\n` + enlacesConPerfil.join("\n\n");
 
       // Copiar el mensaje al portapapeles
-      return navigator.clipboard.writeText(mensajeRenovacion);
+      return navigator.clipboard.writeText(mensajeGigante);
     })
     .then(() => {
       console.log(
@@ -896,12 +914,31 @@ function renovaciones2() {
         }
       );
 
+      // ===partir en tandas y armar mensaje gigante ===
+      const tamTanda = 10; // 10 por tanda
+      const tandas = [];
+      for (let i = 0; i < enlacesConPerfil.length; i += tamTanda) {
+        tandas.push(enlacesConPerfil.slice(i, i + tamTanda));
+      }
+
+      // Texto de cada tanda con encabezado
+      const bloquesTanda = tandas.map((t, idx, arr) => {
+        const titulo =
+          idx === arr.length - 1
+            ? `*Última Tanda (${idx + 1}) - Renovación - ${fechaActual}*`
+            : `*Tanda ${idx + 1} - Renovación - ${fechaActual}*`;
+        return `${titulo}\n\n${t.join("\n\n")}`;
+      });
+
+      // Mensaje gigante: todas las tandas separadas por una línea
+      const mensajeGigante = bloquesTanda.join("\n\n——————————————\n\n");
+
       // Crear el mensaje de renovación
-      const mensajeRenovacion =
-        `*Renovación - ${fechaActual}*\n\n` + enlacesConPerfil.join("\n\n");
+      // const mensajeRenovacion =
+      //   `*Renovación - ${fechaActual}*\n\n` + enlacesConPerfil.join("\n\n");
 
       // Copiar el mensaje al portapapeles
-      return navigator.clipboard.writeText(mensajeRenovacion);
+      return navigator.clipboard.writeText(mensajeGigante);
     })
     .then(() => {
       console.log(
