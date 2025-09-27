@@ -916,7 +916,7 @@ function renovaciones2() {
       );
 
       // ===partir en tandas y armar mensaje gigante ===
-      const tamTanda = 10; // 10 por tanda
+      const tamTanda = 2; // 2 por tanda
       const tandas = [];
       for (let i = 0; i < enlacesConPerfil.length; i += tamTanda) {
         tandas.push(enlacesConPerfil.slice(i, i + tamTanda));
