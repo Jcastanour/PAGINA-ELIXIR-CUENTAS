@@ -787,6 +787,7 @@ function renovaciones2() {
     .then((text) => {
       // Obtener la fecha actual en formato dd/mm/yyyy
       const fechaActual = obtenerFechaFormateada();
+
       // Dividir la cadena en elementos separados por saltos de línea
       const filas = text.trim().split("\n");
 
@@ -922,11 +923,20 @@ function renovaciones2() {
       }
 
       // Texto de cada tanda con encabezado
+      const horaInicio = new Date();
       const bloquesTanda = tandas.map((t, idx, arr) => {
+        const horaActual = new Date(
+          horaInicio.getTime() + idx * 6 * 60 * 1000
+        ).toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit" });
+
         const titulo =
           idx === arr.length - 1
-            ? `*Última Tanda (${idx + 1}) - Renovación - ${fechaActual}*`
-            : `*Tanda ${idx + 1} - Renovación - ${fechaActual}*`;
+            ? `*Última Tanda (${
+                idx + 1
+              }) - Renovación - ${fechaActual} - ${horaActual}*`
+            : `*Tanda ${
+                idx + 1
+              } - Renovación - ${fechaActual} - ${horaActual}*`;
         return `${titulo}\n\n${t.join("\n\n")}`;
       });
 
