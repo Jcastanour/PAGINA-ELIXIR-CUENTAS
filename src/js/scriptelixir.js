@@ -798,7 +798,7 @@ function renovaciones2() {
         (contenido.length + (filas.length - 1)) % 9 !== 0
       ) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas)."
         );
         return;
       }
@@ -894,7 +894,7 @@ function renovaciones2() {
             Math.floor(Math.random() * saludos.length)
           ].replace("{nombre}", nombreSaludo);
 
-          const pregunta = "¿Quieres renovar por otro mes?";
+          const pregunta = "¿Quieres renovar por otro mes";
           const opciones = "✅ Sí, renuevo\n❌ No, gracias";
           const plazo24h =
             "Te agradezco que me confirmes en las próximas 24 h. Si necesitas más tiempo, avísame y lo anotamos. 🙌";
@@ -917,37 +917,58 @@ function renovaciones2() {
 
       // ===partir en tandas y armar mensaje gigante ===
       const tamTanda = 2; // 2 por tanda
-      const tandas = [];
+      const subTandas = [];
       for (let i = 0; i < enlacesConPerfil.length; i += tamTanda) {
-        tandas.push(enlacesConPerfil.slice(i, i + tamTanda));
+        subTandas.push(enlacesConPerfil.slice(i, i + tamTanda));
       }
 
-      // Texto de cada tanda con encabezado
-      const horaInicio = new Date();
-      const bloquesTanda = tandas.map((t, idx, arr) => {
-        const horaActual = new Date(
-          horaInicio.getTime() + idx * 6 * 60 * 1000
-        ).toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit" });
+      const MIN_POR_SUBTANDA = 6; // minutos por tanda
+      const MAX_SUBTANDAS_POR_TANDA = 6; // 6 subtandas por tanda (=> 36 min)
 
-        const titulo =
-          idx === arr.length - 1
-            ? `*Última Tanda (${
-                idx + 1
-              }) - Renovación - ${fechaActual} - ${horaActual}*`
-            : `*Tanda ${
-                idx + 1
-              } - Renovación - ${fechaActual} - ${horaActual}*`;
-        return `${titulo}\n\n${t.join("\n\n")}`;
+      // Agrupar las subtandas en TANDAS (cada tanda contiene hasta 6 subtandas)
+      const tandasHora = [];
+      for (let i = 0; i < subTandas.length; i += MAX_SUBTANDAS_POR_TANDA) {
+        tandasHora.push(subTandas.slice(i, i + MAX_SUBTANDAS_POR_TANDA));
+      }
+
+      // Texto final: cada TANDA dura 1 hora (36 min envíos + 24 min reposo)
+      const horaInicio = new Date(); // inicio de la Tanda 1 (ahora)
+      const bloquesTanda = tandasHora.map((bloqueSub, hIdx) => {
+        // Inicio de esta tanda: hIdx horas después del inicio
+        const inicioTanda = new Date(horaInicio.getTime() + hIdx * 60 * 60 * 1000);
+
+        // Título de la tanda (puedes agregar la hora de inicio si quieres)
+        const tituloTanda = `*Tanda ${hIdx + 1} - Renovación - ${fechaActual}*`;
+
+        // Subtandas dentro de la tanda: cada 6 minutos, 2 links por subtanda
+        const lineasSub = bloqueSub.map((sub, sIdx) => {
+          const horaSub = new Date(inicioTanda.getTime() + sIdx * MIN_POR_SUBTANDA * 60 * 1000)
+            .toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit", hour12: false });
+
+          const encabezadoSub = `_Subtanda ${sIdx + 1} — ${horaSub}_`;
+          return `${encabezadoSub}\n\n${sub.join("\n\n")}`;
+        });
+
+        // Mensaje de PAUSA (visible) hasta completar la hora
+        // (solo si hay más tandas después de esta)
+        let pausaVisible = "";
+        if (hIdx < tandasHora.length - 1) {
+          const finHora = new Date(inicioTanda.getTime() + 60 * 60 * 1000); // siguiente "hora" de esta tanda
+          const horaPausaFmt = finHora.toLocaleTimeString("es-CO", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          });
+          pausaVisible = `\n\n— PAUSA — ⏸️ (reposo ${60-(MIN_POR_SUBTANDA*MAX_SUBTANDAS_POR_TANDA)} min) hasta ${horaPausaFmt} —`;
+        }
+
+        return `${tituloTanda}\n\n${lineasSub.join("\n\n")}${pausaVisible}`;
       });
 
       // Mensaje gigante: todas las tandas separadas por una línea
       const mensajeGigante = bloquesTanda.join("\n\n——————————————\n\n");
 
-      // Crear el mensaje de renovación
-      // const mensajeRenovacion =
-      //   `*Renovación - ${fechaActual}*\n\n` + enlacesConPerfil.join("\n\n");
-
-      // Copiar el mensaje al portapapeles
+      // Copiar al portapapeles
       return navigator.clipboard.writeText(mensajeGigante);
     })
     .then(() => {
