@@ -822,11 +822,6 @@ function renovaciones2() {
 
         // Procesar solo si los días restantes son 1
         if (diasRestantes === 1) {
-          // Si el nombre de la cuenta es "NETFLIX EXTRA", reemplazarlo por "NETFLIX TELEVISOR"
-          if (cuenta === "NETFLIX EXTRA") {
-            cuenta = "NETFLIX TELEVISOR";
-          }
-
           // Si el número de WhatsApp no está en el objeto, inicializar una entrada
           if (!agrupadosPorWhatsApp[whatsapp]) {
             agrupadosPorWhatsApp[whatsapp] = {
@@ -935,15 +930,22 @@ function renovaciones2() {
       const horaInicio = new Date(); // inicio de la Tanda 1 (ahora)
       const bloquesTanda = tandasHora.map((bloqueSub, hIdx) => {
         // Inicio de esta tanda: hIdx horas después del inicio
-        const inicioTanda = new Date(horaInicio.getTime() + hIdx * 60 * 60 * 1000);
+        const inicioTanda = new Date(
+          horaInicio.getTime() + hIdx * 60 * 60 * 1000
+        );
 
         // Título de la tanda (puedes agregar la hora de inicio si quieres)
         const tituloTanda = `*Tanda ${hIdx + 1} - Renovación - ${fechaActual}*`;
 
         // Subtandas dentro de la tanda: cada 6 minutos, 2 links por subtanda
         const lineasSub = bloqueSub.map((sub, sIdx) => {
-          const horaSub = new Date(inicioTanda.getTime() + sIdx * MIN_POR_SUBTANDA * 60 * 1000)
-            .toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit", hour12: false });
+          const horaSub = new Date(
+            inicioTanda.getTime() + sIdx * MIN_POR_SUBTANDA * 60 * 1000
+          ).toLocaleTimeString("es-CO", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          });
 
           const encabezadoSub = `_Subtanda ${sIdx + 1} — ${horaSub}_`;
           return `${encabezadoSub}\n\n${sub.join("\n\n")}`;
@@ -959,7 +961,9 @@ function renovaciones2() {
             minute: "2-digit",
             hour12: false,
           });
-          pausaVisible = `\n\n— PAUSA — ⏸️ (reposo ${60-(MIN_POR_SUBTANDA*MAX_SUBTANDAS_POR_TANDA)} min) hasta ${horaPausaFmt} —`;
+          pausaVisible = `\n\n— PAUSA — ⏸️ Desde  (reposo ${
+            60 - MIN_POR_SUBTANDA * MAX_SUBTANDAS_POR_TANDA
+          } min) hasta ${horaPausaFmt} —`;
         }
 
         return `${tituloTanda}\n\n${lineasSub.join("\n\n")}${pausaVisible}`;
