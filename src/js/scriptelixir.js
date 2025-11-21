@@ -961,9 +961,9 @@ function renovaciones2() {
             minute: "2-digit",
             hour12: false,
           });
-          pausaVisible = `\n\n— PAUSA — ⏸️ Desde  (reposo ${
+          pausaVisible = `\n\n— PAUSA (Regreso: ${horaPausaFmt}) — ⏸️ (reposo ${
             60 - MIN_POR_SUBTANDA * MAX_SUBTANDAS_POR_TANDA
-          } min) hasta ${horaPausaFmt} —`;
+          } min)  —`;
         }
 
         return `${tituloTanda}\n\n${lineasSub.join("\n\n")}${pausaVisible}`;
