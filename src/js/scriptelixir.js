@@ -422,8 +422,8 @@ function copiarexcel() {
     precioG = 20000;
   } else if (cuentaG === "IPTV") {
     precioG = 9000;
-  } else if (cuentaG === "COMBO PLUS") {
-    precioG = 11000;
+  } else if (cuentaG === "LINK PARTIDOS YT") {
+    precioG = 10000;
   } else if (cuentaG === "DISNEY PREMIUM") {
     precioG = 12000;
   } else if (cuentaG === "AMAZON") {
