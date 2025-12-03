@@ -1299,7 +1299,7 @@ function confirmarrenovacion() {
       const salidaFinal =
         salidaFormateada +
         "\n\n*Gracias por continuar con nosotros* 🫶🏼" +
-        "\n~Las cuentas siguen siendo las miasmas.~";
+        "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
       // Colocar la salida formateada en el portapapeles
       return navigator.clipboard.writeText(salidaFinal);
     })
