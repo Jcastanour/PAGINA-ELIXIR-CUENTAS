@@ -1276,7 +1276,6 @@ function confirmarrenovacion() {
 
           // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
           if (perfil === "NETFLIX EXTRA") {
-            perfil = "NETFLIX TELEVISOR";
             correo = "Cuenta Personal";
             contraseña = "";
           }
@@ -1298,7 +1297,9 @@ function confirmarrenovacion() {
         .join("\n\n"); // Unir las salidas de cada fila separadas por dos saltos de línea
 
       const salidaFinal =
-        salidaFormateada + "\n\n*Gracias por continuar con nosotros* 🫶🏼";
+        salidaFormateada +
+        "\n\n*Gracias por continuar con nosotros* 🫶🏼" +
+        "\n~Las cuentas siguen siendo las miasmas.~";
       // Colocar la salida formateada en el portapapeles
       return navigator.clipboard.writeText(salidaFinal);
     })
