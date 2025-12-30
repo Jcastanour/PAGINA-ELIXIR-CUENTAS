@@ -410,6 +410,8 @@ function copiarexcel() {
   copiado = 1;
   if (cuentaG === "NETFLIX TELEVISOR") {
     precioG = 13000;
+  } else if (cuentaG === "NETFLIX NO RENOVABLE") {
+    precioG = 13000;
   } else if (cuentaG === "NETFLIX EXTRA") {
     precioG = 16000;
   } else if (cuentaG === "NETFLIX CELULAR/PC") {
