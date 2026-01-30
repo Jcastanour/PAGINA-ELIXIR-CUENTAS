@@ -196,7 +196,7 @@ function generarPlantilla() {
       const contenido = text.trim().split("\t");
       if (contenido.length !== 3) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser tres columnas separadas por tabuladores)."
+          "El contenido copiado no está en el formato esperado (deben ser tres columnas separadas por tabuladores).",
         );
         return;
       }
@@ -245,7 +245,7 @@ function generarPlantilla2() {
       const contenido = text.trim().split("\t");
       if (contenido.length !== 5) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser cinco columnas separadas por tabuladores)."
+          "El contenido copiado no está en el formato esperado (deben ser cinco columnas separadas por tabuladores).",
         );
         return;
       }
@@ -292,7 +292,7 @@ function generarPlantilla3() {
       const contenido = text.trim().split("\t");
       if (contenido.length !== 6) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser seis columnas separadas por tabuladores)."
+          "El contenido copiado no está en el formato esperado (deben ser seis columnas separadas por tabuladores).",
         );
         return;
       }
@@ -404,12 +404,10 @@ function copiarcuenta() {
 
 function obtenerFormulaContrasenaExcel() {
   // Windows (Excel en español)
-  const formulaWindows =
-    `=SI([@COMPLETA]="SI","CUENTA COMPLETA",SI.ERROR(SI(ESBLANCO([@[FECHA DE VENTA]]),"FALTA FECHA VENTA",BUSCARX(1,(AJUSTES!$AB$3:$AB$2000=[@CUENTA])*(AJUSTES!$AC$3:$AC$2000=[@CORREO]),AJUSTES!$AD$3:$AD$2000)),"CORREO NO EXISTE"))`;
+  const formulaWindows = `=SI([@COMPLETA]="SI","CUENTA COMPLETA",SI.ERROR(SI(ESBLANCO([@[FECHA DE VENTA]]),"FALTA FECHA VENTA",BUSCARX(1,(AJUSTES!$AB$3:$AB$2000=[@CUENTA])*(AJUSTES!$AC$3:$AC$2000=[@CORREO]),AJUSTES!$AD$3:$AD$2000)),"CORREO NO EXISTE"))`;
 
   // Mac (Excel en inglés + ;)
-  const formulaMac =
-    `=IF([@COMPLETA]="SI";"CUENTA COMPLETA";IFERROR(IF(ISBLANK([@[FECHA DE VENTA]]);"FALTA FECHA VENTA";XLOOKUP(1;(AJUSTES!$AB$3:$AB$2000=[@CUENTA])*(AJUSTES!$AC$3:$AC$2000=[@CORREO]);AJUSTES!$AD$3:$AD$2000));"CORREO NO EXISTE"))`;
+  const formulaMac = `=IF([@COMPLETA]="SI";"CUENTA COMPLETA";IFERROR(IF(ISBLANK([@[FECHA DE VENTA]]);"FALTA FECHA VENTA";XLOOKUP(1;(AJUSTES!$AB$3:$AB$2000=[@CUENTA])*(AJUSTES!$AC$3:$AC$2000=[@CORREO]);AJUSTES!$AD$3:$AD$2000));"CORREO NO EXISTE"))`;
 
   return esMac() ? formulaMac : formulaWindows;
 }
@@ -431,7 +429,7 @@ function copiarexcel() {
   } else if (cuentaG === "NETFLIX EXTRA") {
     precioG = 16000;
   } else if (cuentaG === "NETFLIX CELULAR/PC") {
-    precioG = 11000;
+    precioG = 10000;
   } else if (cuentaG === "PLEX") {
     precioG = 8000;
   } else if (cuentaG === "PLEX 2") {
@@ -447,11 +445,11 @@ function copiarexcel() {
   } else if (cuentaG === "AMAZON") {
     precioG = 7000;
   } else if (cuentaG === "YOUTUBE PERSONAL") {
-    precioG = 11000;
+    precioG = 12000;
   } else if (cuentaG === "CHATGPT") {
     precioG = 15000;
   } else {
-    precioG = 6000;
+    precioG = "6000";
   }
   let contrasenaF = obtenerFormulaContrasenaExcel();
   const texto = `${PerfilG}\t${whatasappG}\t${fechaG}\t${cuentaG}\t${correoG}\t${contrasenaF}\t${precioG}`;
@@ -538,7 +536,7 @@ function recordarDatos() {
         (contenido.length + (filas.length - 1)) % 6 !== 0
       ) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas).",
         );
         return;
       }
@@ -585,7 +583,7 @@ function recordarDatos() {
     })
     .then(() => {
       console.log(
-        "La salida formateada se ha copiado correctamente al portapapeles."
+        "La salida formateada se ha copiado correctamente al portapapeles.",
       );
     })
     .catch((err) => {
@@ -633,7 +631,7 @@ function obtenerNombresYSumaPrecios() {
       nombres = Object.entries(cuentasRepetidas).map(
         ([nombre, repeticiones]) => {
           return repeticiones > 1 ? `${repeticiones} ${nombre}` : nombre;
-        }
+        },
       );
 
       // Concatenar los nombres de las cuentas separados por '+'
@@ -675,7 +673,7 @@ function renovaciones() {
         (contenido.length + (filas.length - 1)) % 8 !== 0
       ) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas).",
         );
         return;
       }
@@ -735,7 +733,7 @@ function renovaciones() {
             .map((perfil) =>
               perfil.correo
                 ? `*${perfil.cuenta}* - ${perfil.correo}`
-                : `*${perfil.cuenta}* - ${perfil.nombrePerfil}`
+                : `*${perfil.cuenta}* - ${perfil.nombrePerfil}`,
             )
             .join("\n");
 
@@ -746,7 +744,7 @@ function renovaciones() {
               currency: "COP",
               minimumFractionDigits: 0,
               maximumFractionDigits: 0,
-            }
+            },
           );
 
           const mensaje = `Hola 👋🏻, las siguientes cuentas vencieron el dia de hoy:\n\n${cuentas}\n\nPrecio Total: ${sumaFormateada}\n\n¿Deseas renovar?.\n\nRecuerda que si no contestas este mensaje asumiremos que se debe hacer cierre.`;
@@ -754,13 +752,13 @@ function renovaciones() {
           // Crear el enlace de WhatsApp sin el símbolo "+"
           const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
             /\D/g,
-            ""
+            "",
           )}?text=${encodeURIComponent(mensaje)}`;
 
           return `*${
             index + 1
           } - ${cuentaInfo.perfiles[0].nombrePerfil.toUpperCase()} | ${whatsapp}*\n${enlaceWhatsApp}`;
-        }
+        },
       );
 
       // ===partir en tandas y armar mensaje gigante ===
@@ -790,12 +788,17 @@ function renovaciones() {
     })
     .then(() => {
       console.log(
-        "Los enlaces de WhatsApp con el mensaje de renovación se han copiado correctamente al portapapeles."
+        "Los enlaces de WhatsApp con el mensaje de renovación se han copiado correctamente al portapapeles.",
       );
     })
     .catch((err) => {
       console.error("Error al leer del portapapeles: ", err);
     });
+}
+
+function esNetflixNoRenovable(nombreCuenta) {
+  const c = (nombreCuenta || "").toUpperCase().trim();
+  return c.includes("NO RENOVABLE") || c === "NETFLIX NO RENOVABLE";
 }
 
 function renovaciones2() {
@@ -816,7 +819,7 @@ function renovaciones2() {
         (contenido.length + (filas.length - 1)) % 9 !== 0
       ) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas).",
         );
         return;
       }
@@ -867,11 +870,16 @@ function renovaciones2() {
       const enlacesConPerfil = Object.keys(agrupadosPorWhatsApp).map(
         (whatsapp, index) => {
           const cuentaInfo = agrupadosPorWhatsApp[whatsapp];
+
+          const tieneNetflixNoRenovable = cuentaInfo.perfiles.some(
+            (p) => p.cuenta === "NETFLIX NO RENOVABLE",
+          );
+
           const cuentas = cuentaInfo.perfiles
             .map((perfil) =>
               perfil.correo
                 ? `*${perfil.cuenta}* - ${perfil.correo}`
-                : `*${perfil.cuenta}* - ${perfil.nombrePerfil}`
+                : `*${perfil.cuenta}* - ${perfil.nombrePerfil}`,
             )
             .join("\n");
 
@@ -882,7 +890,7 @@ function renovaciones2() {
               currency: "COP",
               minimumFractionDigits: 0,
               maximumFractionDigits: 0,
-            }
+            },
           );
 
           const nombreSaludo =
@@ -897,7 +905,6 @@ function renovaciones2() {
             "Holaa 🌟",
             "¡Hola! 😊 Espero que estés muy bien",
             "Buen día 👋🏻",
-            "¡Buenos días! 📆",
             "¡Hola! 🌟, las siguientes cuenticas vencen el día de mañana:",
             "Hola 😄",
             "Buen día, ¿cómo estás?",
@@ -914,18 +921,24 @@ function renovaciones2() {
           const optout =
             "> (Si prefieres no recibir recordatorios, dime y lo quitamos)";
 
-          const mensaje = `${saludo}\n\nTus cuentas vencen mañana:\n\n${cuentas}\n\n💲 Total: ${sumaFormateada}\n\n${pregunta}\n\n${opciones}\n\n${plazo24h}\n${optout}`;
+          let notaNetflix = "";
+          if (tieneNetflixNoRenovable) {
+            notaNetflix =
+              "\n\n> ⚠️ *Nota:* Netflix al no ser renovable, se debe cambiar a otra cuenta (podemos transferir tu perfil y no se te pierde nada, en menos de 5min ya vuelves a tener la nueva cuenta lista en tu tv).";
+          }
+
+          const mensaje = `${saludo}\n\nTus cuentas vencen mañana:\n\n${cuentas}\n\n💲 Total: ${sumaFormateada}\n\n${pregunta}\n\n${opciones}\n\n${notaNetflix}\n\n${plazo24h}\n${optout}`;
 
           // Crear el enlace de WhatsApp sin el símbolo "+"
           const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
             /\D/g,
-            ""
+            "",
           )}?text=${encodeURIComponent(mensaje)}`;
 
           return `*${
             index + 1
           } - ${cuentaInfo.perfiles[0].nombrePerfil.toUpperCase()} | ${whatsapp}*\n${enlaceWhatsApp}`;
-        }
+        },
       );
 
       // ===partir en tandas y armar mensaje gigante ===
@@ -949,7 +962,7 @@ function renovaciones2() {
       const bloquesTanda = tandasHora.map((bloqueSub, hIdx) => {
         // Inicio de esta tanda: hIdx horas después del inicio
         const inicioTanda = new Date(
-          horaInicio.getTime() + hIdx * 60 * 60 * 1000
+          horaInicio.getTime() + hIdx * 60 * 60 * 1000,
         );
 
         // Título de la tanda (puedes agregar la hora de inicio si quieres)
@@ -958,7 +971,7 @@ function renovaciones2() {
         // Subtandas dentro de la tanda: cada 6 minutos, 2 links por subtanda
         const lineasSub = bloqueSub.map((sub, sIdx) => {
           const horaSub = new Date(
-            inicioTanda.getTime() + sIdx * MIN_POR_SUBTANDA * 60 * 1000
+            inicioTanda.getTime() + sIdx * MIN_POR_SUBTANDA * 60 * 1000,
           ).toLocaleTimeString("es-CO", {
             hour: "2-digit",
             minute: "2-digit",
@@ -995,7 +1008,7 @@ function renovaciones2() {
     })
     .then(() => {
       console.log(
-        "Los enlaces de WhatsApp con el mensaje de renovación se han copiado correctamente al portapapeles."
+        "Los enlaces de WhatsApp con el mensaje de renovación se han copiado correctamente al portapapeles.",
       );
     })
     .catch((err) => {
@@ -1019,7 +1032,7 @@ function cambioContra() {
         ((contenido.length + (filas.length - 1)) % 6 !== 0)
       ) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas).",
         );
         return;
       }
@@ -1050,12 +1063,12 @@ function cambioContra() {
 
         // Crear el enlace de WhatsApp sin el símbolo "+"
         const enlaceWhatsApp = `https://wa.me/${telefonoSinPlus}?text=${encodeURIComponent(
-          mensaje
+          mensaje,
         )}`;
 
         // Almacenar el enlace junto con el perfil y el nombre
         enlacesConPerfil.push(
-          `*Perfil: ${cuenta.toUpperCase()} ${nombre.toUpperCase()}*\n${enlaceWhatsApp}`
+          `*Perfil: ${cuenta.toUpperCase()} ${nombre.toUpperCase()}*\n${enlaceWhatsApp}`,
         );
       }
 
@@ -1072,7 +1085,7 @@ function cambioContra() {
     })
     .then(() => {
       console.log(
-        "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles."
+        "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles.",
       );
     })
     .catch((err) => {
@@ -1096,7 +1109,7 @@ function cambioCorreo() {
         ((contenido.length + (filas.length - 1)) % 6 !== 0)
       ) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas).",
         );
         return;
       }
@@ -1127,12 +1140,12 @@ function cambioCorreo() {
 
         // Crear el enlace de WhatsApp sin el símbolo "+"
         const enlaceWhatsApp = `https://wa.me/${telefonoSinPlus}?text=${encodeURIComponent(
-          mensaje
+          mensaje,
         )}`;
 
         // Almacenar el enlace junto con el perfil y el nombre
         enlacesConPerfil.push(
-          `*Perfil: ${cuenta.toUpperCase()} ${nombre.toUpperCase()}*\n${enlaceWhatsApp}`
+          `*Perfil: ${cuenta.toUpperCase()} ${nombre.toUpperCase()}*\n${enlaceWhatsApp}`,
         );
       }
 
@@ -1149,7 +1162,7 @@ function cambioCorreo() {
     })
     .then(() => {
       console.log(
-        "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles."
+        "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles.",
       );
     })
     .catch((err) => {
@@ -1169,7 +1182,7 @@ function cambioContrau() {
 
       if ((contenido.length !== 6) & (contenido.length % 6 !== 0)) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser 6 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser 6 celdas).",
         );
         return;
       }
@@ -1202,7 +1215,7 @@ function cambioContrau() {
     })
     .then(() => {
       console.log(
-        "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles."
+        "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles.",
       );
     })
     .catch((err) => {
@@ -1219,7 +1232,7 @@ function cambioCorreou() {
       const contenido = text.trim().split("\t");
       if ((contenido.length !== 6) & (contenido.length % 6 !== 0)) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 6 celdas).",
         );
         return;
       }
@@ -1251,7 +1264,7 @@ function cambioCorreou() {
     })
     .then(() => {
       console.log(
-        "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles."
+        "Los enlaces de WhatsApp con el mensaje de cambio de contraseña se han copiado correctamente al portapapeles.",
       );
     })
     .catch((err) => {
@@ -1274,7 +1287,7 @@ function confirmarrenovacion() {
         (contenido.length + (filas.length - 1)) % 9 !== 0
       ) {
         alert(
-          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas)."
+          "El contenido copiado no está en el formato esperado (deben ser filas de 9 celdas).",
         );
         return;
       }
@@ -1323,7 +1336,7 @@ function confirmarrenovacion() {
     })
     .then(() => {
       console.log(
-        "La salida formateada se ha copiado correctamente al portapapeles."
+        "La salida formateada se ha copiado correctamente al portapapeles.",
       );
     })
     .catch((err) => {
