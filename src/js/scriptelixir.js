@@ -917,14 +917,14 @@ function renovaciones2() {
           const pregunta = "¿Quieres renovar por otro mes";
           const opciones = "✅ Sí, renuevo\n❌ No, gracias";
           const plazo24h =
-            "Te agradezco que me confirmes en las próximas 24 h. Si necesitas más tiempo, avísame y lo anotamos. 🙌";
+            "Te agradezco que me confirmes en las *próximas 24 h*. Si necesitas más tiempo, avísame y lo anotamos. 🙌";
           const optout =
             "> (Si prefieres no recibir recordatorios, dime y lo quitamos)";
 
           let notaNetflix = "";
           if (tieneNetflixNoRenovable) {
             notaNetflix =
-              "\n\n> ⚠️ *Nota:* Netflix al no ser renovable, se debe cambiar a otra cuenta (podemos transferir tu perfil y no se te pierde nada, en menos de 5min ya vuelves a tener la nueva cuenta lista en tu tv).";
+              "⚠️ *Nota: Netflix al no ser renovable, se debe cambiar a otra cuenta (podemos transferir tu perfil y no se te pierde nada del contenido, en menos de 5min ya vuelves a tener la nueva cuenta lista en tu tv 😊).*";
           }
 
           const mensaje = `${saludo}\n\nTus cuentas vencen mañana:\n\n${cuentas}\n\n💲 Total: ${sumaFormateada}\n\n${pregunta}\n\n${opciones}\n\n${notaNetflix}\n\n${plazo24h}\n${optout}`;
