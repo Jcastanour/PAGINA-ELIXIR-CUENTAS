@@ -1340,12 +1340,12 @@ function confirmarrenovacion() {
       if (hayRenovables && hayNoRenovables) {
         mensajeFinal =
           "\n> ⚠️ Algunas cuentas son *NO renovables*. " +
-          "Las demás continúan normalmente. " +
+          "Las demás continúan con normalidad. " +
           "En todos los casos, el perfil y el historial se mantienen igual 👍";
       } else if (hayNoRenovables) {
         mensajeFinal =
           "\n> ⚠️ Esta(s) cuenta(s) son *NO renovables*. " +
-          "pero no te preocupes: el perfil y todo el historial se mantienen igual 👍";
+          "Pero no te preocupes: el perfil y todo el historial se mantienen igual 👍";
       } else {
         mensajeFinal =
           "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
