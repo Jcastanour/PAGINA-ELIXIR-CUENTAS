@@ -1292,6 +1292,8 @@ function confirmarrenovacion() {
         return;
       }
 
+      let flagnr = false;
+
       // Procesar cada fila
       const salidaFormateada = filas
         .map((fila) => {
