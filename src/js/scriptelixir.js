@@ -1320,10 +1320,6 @@ function confirmarrenovacion() {
             flagnr = true;
           }
 
-          const mensajeFinal = flagnr
-            ? "\n> Recuerda que debes ingresar con este nuevo correo 📧, pero no te preocupes: tu perfil y todo tu historial se mantienen igual 👍😊"
-            : "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
-
           // Formatear la salida de esta fila
           return (
             `*CUENTA RENOVADA* ✅\n` +
@@ -1334,6 +1330,10 @@ function confirmarrenovacion() {
           );
         })
         .join("\n\n"); // Unir las salidas de cada fila separadas por dos saltos de línea
+
+      const mensajeFinal = flagnr
+        ? "\n> Recuerda que debes ingresar con este nuevo correo 📧, pero no te preocupes: tu perfil y todo tu historial se mantienen igual 👍😊"
+        : "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
 
       const salidaFinal =
         salidaFormateada +
