@@ -1316,6 +1316,14 @@ function confirmarrenovacion() {
             contraseña = "";
           }
 
+          if (perfil === "NETFLIX NO RENOVABLE") {
+            flagnr = true;
+          }
+
+          const mensajeFinal = flagnr
+            ? "\n> Recuerda que debes ingresar con este nuevo correo 📧, pero no te preocupes: tu perfil y todo tu historial se mantienen igual 👍😊"
+            : "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
+
           // Formatear la salida de esta fila
           return (
             `*CUENTA RENOVADA* ✅\n` +
@@ -1330,7 +1338,7 @@ function confirmarrenovacion() {
       const salidaFinal =
         salidaFormateada +
         "\n\n*Gracias por continuar con nosotros* 🫶🏼" +
-        "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
+        mensajeFinal;
       // Colocar la salida formateada en el portapapeles
       return navigator.clipboard.writeText(salidaFinal);
     })
