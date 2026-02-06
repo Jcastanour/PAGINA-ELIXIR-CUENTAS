@@ -1292,7 +1292,8 @@ function confirmarrenovacion() {
         return;
       }
 
-      let flagnr = false;
+      let hayRenovables = false;
+      let hayNoRenovables = false;
 
       // Procesar cada fila
       const salidaFormateada = filas
@@ -1319,9 +1320,10 @@ function confirmarrenovacion() {
           }
 
           if (perfil === "NETFLIX NO RENOVABLE") {
-            flagnr = true;
+            hayNoRenovables = true;
+          } else {
+            hayRenovables = true;
           }
-
           // Formatear la salida de esta fila
           return (
             `*CUENTA RENOVADA* ✅\n` +
@@ -1333,9 +1335,21 @@ function confirmarrenovacion() {
         })
         .join("\n\n"); // Unir las salidas de cada fila separadas por dos saltos de línea
 
-      const mensajeFinal = flagnr
-        ? "\n> Recuerda que debes ingresar con este nuevo correo 📧, pero no te preocupes: tu perfil y todo tu historial se mantienen igual 👍😊"
-        : "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
+      let mensajeFinal = "";
+
+      if (hayRenovables && hayNoRenovables) {
+        mensajeFinal =
+          "\n> ⚠️ Algunas cuentas son *NO renovables*. " +
+          "Las demás continúan normalmente. " +
+          "En todos los casos, el perfil y el historial se mantienen igual 👍";
+      } else if (hayNoRenovables) {
+        mensajeFinal =
+          "\n> ⚠️ Esta(s) cuenta(s) son *NO renovables*. " +
+          "pero no te preocupes: el perfil y todo el historial se mantienen igual 👍";
+      } else {
+        mensajeFinal =
+          "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
+      }
 
       const salidaFinal =
         salidaFormateada +
