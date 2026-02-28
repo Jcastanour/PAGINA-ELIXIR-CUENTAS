@@ -1345,7 +1345,7 @@ function confirmarrenovacion() {
       } else if (hayNoRenovables) {
         mensajeFinal =
           "\n> ⚠️ Esta(s) cuenta(s) son *NO renovables*. " +
-          "Pero no te preocupes: el perfil y todo el historial se mantienen igual 👍";
+          "Pero no te preocupes: el perfil y todo el historial se mantienen igual, solo debes iniciar con esta nueva cuenta 👍";
       } else {
         mensajeFinal =
           "\n> ⁠No te preocupes, la(s) cuenta(s) sigue(n) siendo las mismas✨";
