@@ -697,6 +697,9 @@ function renovaciones() {
 
         // Procesar solo si los días restantes son 1
         if (diasRestantes === 0) {
+          if (cuenta === "NETFLIX EXTRA NR") {
+            cuenta = "NETFLIX EXTRA";
+          }
           // Si el nombre de la cuenta es "NETFLIX EXTRA", reemplazarlo por "NETFLIX TELEVISOR"
           if (cuenta === "NETFLIX EXTRA") {
             cuenta = "NETFLIX TELEVISOR";
@@ -840,6 +843,10 @@ function renovaciones2() {
         let contra = datos[5];
         const precio = parseFloat(datos[6].replace(/[^\d.]/g, ""));
         const diasRestantes = parseInt(datos[8]);
+
+        if (cuenta === "NETFLIX EXTRA NR") {
+          cuenta = "NETFLIX EXTRA";
+        }
 
         // Procesar solo si los días restantes son 1
         if (diasRestantes === 1) {
@@ -1307,6 +1314,10 @@ function confirmarrenovacion() {
           const fechavencimiento = datos[7];
           let correo = datos[4];
           let contraseña = datos[5];
+
+          if (perfil === "NETFLIX EXTRA NR") {
+            perfil = "NETFLIX EXTRA";
+          }
 
           // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
           if (perfil === "NETFLIX EXTRA") {
