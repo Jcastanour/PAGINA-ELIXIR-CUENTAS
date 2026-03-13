@@ -1319,7 +1319,7 @@ function confirmarrenovacion() {
             perfil = "NETFLIX EXTRA";
           }
 
-          // Reemplazar "NETFLIX EXTRA" con "NETFLIX TELEVISOR"
+          // Aplicar lógica de Netflix Extra (Ocultar datos sensibles)
           if (perfil === "NETFLIX EXTRA") {
             correo = "Cuenta Personal";
             contraseña = "";
