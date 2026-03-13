@@ -931,10 +931,10 @@ function renovaciones2() {
           let notaNetflix = "";
           if (tieneNetflixNoRenovable) {
             notaNetflix =
-              "⚠️ *Nota: Netflix al no ser renovable, se debe cambiar a otra cuenta (podemos transferir tu perfil y no se te pierde nada del contenido, en menos de 5min ya vuelves a tener la nueva cuenta lista en tu tv 😊).*";
+              "\n⚠️ *Nota: Netflix al no ser renovable, se debe cambiar a otra cuenta (podemos transferir tu perfil y no se te pierde nada del contenido, en menos de 5min ya vuelves a tener la nueva cuenta lista en tu tv 😊).*\n";
           }
 
-          const mensaje = `${saludo}\n\nTus cuentas vencen mañana:\n\n${cuentas}\n\n💲 Total: ${sumaFormateada}\n\n${pregunta}\n\n${opciones}\n\n${notaNetflix}\n\n${plazo24h}\n${optout}`;
+          const mensaje = `${saludo}\n\nTus cuentas vencen mañana:\n\n${cuentas}\n\n💲 Total: ${sumaFormateada}\n\n${pregunta}\n\n${opciones}\n${notaNetflix}\n${plazo24h}\n${optout}`;
 
           // Crear el enlace de WhatsApp sin el símbolo "+"
           const enlaceWhatsApp = `https://wa.me/${whatsapp.replace(
